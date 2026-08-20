@@ -1,0 +1,68 @@
+{
+  "interface_id": "talky-spider",
+  "version": "0.1.0",
+  "role": "omi-communications-fabric",
+  "deployment": {
+    "cloud_vm": true,
+    "edge_client_required": true,
+    "offline_peer_mesh": true,
+    "store_and_forward": true
+  },
+  "identity": {
+    "mutual_authentication": true,
+    "signed_messages": true,
+    "pseudonymous_peer_ids": true,
+    "private_payloads_end_to_end_encrypted": true
+  },
+  "message_priorities": [
+    "P0_EMERGENCY",
+    "P1_SAFETY",
+    "P2_COMMAND",
+    "P3_STATE",
+    "P4_NORMAL",
+    "P5_BULK"
+  ],
+  "message_types": [
+    "direct_message",
+    "group_thread",
+    "voice_call_signal",
+    "video_call_signal",
+    "presence",
+    "location_update",
+    "arrival_flag",
+    "service_ticket",
+    "robot_telemetry",
+    "resource_share_state",
+    "load_balance_state",
+    "emergency_distress",
+    "receipt"
+  ],
+  "routing": {
+    "prefer_local_peer_when_safe": true,
+    "cloud_relay_allowed": true,
+    "mesh_relay_allowed": true,
+    "duplicate_critical_packets": true,
+    "deduplicate_by_message_id": true,
+    "preserve_original_timestamp": true
+  },
+  "resilience": {
+    "cache_when_disconnected": true,
+    "flush_priority_first_on_reconnect": true,
+    "continue_local_operation_without_cloud": true,
+    "never_report_stale_location_as_live": true,
+    "last_confirmed_state_required": true
+  },
+  "sharing": {
+    "share_must_be_enabled_before_load_balance": true,
+    "max_idle_share_percent": 15,
+    "foreground_user_wins": true,
+    "private_data_never_enters_resource_pool": true
+  },
+  "hard_rules": {
+    "no_plaintext_private_payload_fallback": true,
+    "no_implicit_location_sharing": true,
+    "no_cross_capsule_read_without_permission": true,
+    "no_app_bypass_of_omi_identity": true,
+    "raw_threads_retained_beneath_ai_summaries": true
+  }
+}
