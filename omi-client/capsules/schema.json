@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kaos-labs.local/omi-client/capsules/schema.json",
+  "title": "OMI Personal Capsule",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "capsule_id",
+    "owner_id",
+    "version",
+    "identity",
+    "privacy",
+    "services",
+    "emergency",
+    "sharing"
+  ],
+  "properties": {
+    "capsule_id": {"type": "string", "minLength": 1},
+    "owner_id": {"type": "string", "minLength": 1},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["auth_methods", "raw_biometrics_retained"],
+      "properties": {
+        "auth_methods": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"enum": ["passkey", "pin", "voice_template", "camera_template", "reliance_watch"]}
+        },
+        "raw_biometrics_retained": {"const": false},
+        "voice_template_ref": {"type": ["string", "null"]},
+        "camera_template_ref": {"type": ["string", "null"]},
+        "preferred_language": {"type": "string", "default": "en"},
+        "accessibility_profile_ref": {"type": ["string", "null"]}
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["location", "presence", "timeline", "media", "messages", "travel"],
+      "properties": {
+        "location": {"$ref": "#/$defs/audience_control"},
+        "presence": {"$ref": "#/$defs/audience_control"},
+        "timeline": {"$ref": "#/$defs/audience_control"},
+        "media": {"$ref": "#/$defs/audience_control"},
+        "messages": {"$ref": "#/$defs/audience_control"},
+        "travel": {"$ref": "#/$defs/audience_control"}
+      }
+    },
+    "services": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["app_id", "enabled"],
+        "properties": {
+          "app_id": {"type": "string"},
+          "enabled": {"type": "boolean"},
+          "profile": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "travel": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "travel_partner_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "trip_only_location_share": {"type": "boolean", "default": true},
+        "arrival_flags": {"type": "boolean", "default": true},
+        "regional_emergency_profile": {"type": "boolean", "default": true},
+        "translation_enabled": {"type": "boolean", "default": true}
+      }
+    },
+    "emergency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled", "contacts", "location_share_on_sos"],
+      "properties": {
+        "enabled": {"type": "boolean"},
+        "contacts": {"type": "array", "items": {"type": "string"}},
+        "location_share_on_sos": {"type": "boolean"},
+        "medical_summary_ref": {"type": ["string", "null"]},
+        "allow_regional_emergency_relay": {"type": "boolean", "default": true}
+      }
+    },
+    "sharing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled", "max_idle_share_percent", "load_balance"],
+      "properties": {
+        "enabled": {"type": "boolean", "default": false},
+        "max_idle_share_percent": {"type": "number", "minimum": 0, "maximum": 15, "default": 15},
+        "share_window": {"type": ["string", "null"]},
+        "auto_manage": {"type": "boolean", "default": false},
+        "turbo_manual": {"type": "boolean", "default": false},
+        "load_balance": {"type": "boolean", "default": false},
+        "resource_types": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"enum": ["cpu", "vgpu", "storage", "bandwidth"]}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "audience_control": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode"],
+      "properties": {
+        "mode": {"enum": ["private", "selected", "family"]},
+        "allowed_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "expires_at": {"type": ["string", "null"], "format": "date-time"}
+      }
+    }
+  }
+}
