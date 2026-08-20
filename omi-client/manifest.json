@@ -1,0 +1,39 @@
+{
+  "client_id": "omi-client",
+  "role": "universal-seat",
+  "version": "0.1.0",
+  "cross_platform": true,
+  "identity": {
+    "personal_capsule": true,
+    "voice_auth": true,
+    "camera_auth": true
+  },
+  "mesh": {
+    "talky_spider": true,
+    "store_and_forward": true
+  },
+  "sharing": {
+    "default": "off",
+    "user_authorized_only": true,
+    "max_idle_share_percent": 15,
+    "load_balance_requires_share": true,
+    "auto_manage": true,
+    "turbo_manual": true
+  },
+  "resources": {
+    "cpu": true,
+    "vgpu": true,
+    "storage": true,
+    "honeycomb_cells": true
+  },
+  "cartridges": {
+    "registry": "registry/apps.json",
+    "mount_root": "cartridges/"
+  },
+  "hard_rules": {
+    "foreground_user_wins": true,
+    "private_data_not_shared": true,
+    "apps_remain_isolated": true,
+    "signed_modules_only": true
+  }
+}
