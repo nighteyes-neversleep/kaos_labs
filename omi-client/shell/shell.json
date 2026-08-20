@@ -1,0 +1,52 @@
+{
+  "shell_id": "omi-shell",
+  "version": "0.1.0",
+  "role": "universal-client-container",
+  "sign_in": {
+    "provider": "omi-client",
+    "personal_capsule_required": true,
+    "supported_methods": ["passkey", "pin", "voice_template", "camera_template", "reliance_watch"]
+  },
+  "navigation": {
+    "presentation": "modular-carousel",
+    "sections": [
+      "people",
+      "services",
+      "apps",
+      "messages",
+      "calls",
+      "travel",
+      "media",
+      "resources",
+      "sharing"
+    ]
+  },
+  "sharing_controls": {
+    "share_toggle": true,
+    "auto_manage_toggle": true,
+    "turbo_button": true,
+    "load_balance_toggle": true,
+    "max_idle_share_percent": 15,
+    "load_balance_locked_until_share_enabled": true
+  },
+  "app_loading": {
+    "registry": "../registry/apps.json",
+    "mount_root": "../cartridges/",
+    "isolated": true,
+    "signed_modules_only": true
+  },
+  "accessibility": {
+    "screen_reader": true,
+    "keyboard": true,
+    "voice_navigation": true,
+    "large_text": true,
+    "high_contrast": true,
+    "reduced_motion": true
+  },
+  "hard_rules": {
+    "foreground_user_wins": true,
+    "privacy_controls_visible": true,
+    "emergency_services_not_gated_by_sharing": true,
+    "app_permissions_declared_before_mount": true
+  }
+}
