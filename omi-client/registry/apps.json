@@ -1,0 +1,114 @@
+{
+  "registry_version": "0.1.0",
+  "client_manifest": "../manifest.json",
+  "auth": {
+    "provider": "omi-client",
+    "single_sign_on": true,
+    "personal_capsule_required": true
+  },
+  "mount_root": "../cartridges/",
+  "defaults": {
+    "isolated": true,
+    "signed_module_required": true,
+    "private_data_shared": false,
+    "share_resources_requires_user_authorization": true,
+    "load_balance_requires_share": true,
+    "max_idle_share_percent": 15
+  },
+  "apps": [
+    {
+      "app_id": "eagles-nest",
+      "name": "Eagle's Nest",
+      "category": "family",
+      "scope": "private-family",
+      "source_bundle": "eagle's-nest (3).zip",
+      "runtime": "vite-react-node",
+      "entrypoint": "src/main.tsx",
+      "server_entrypoint": "server.ts",
+      "frame_permissions": ["microphone", "camera"],
+      "declared_capabilities": ["server_side_gemini_api"],
+      "mount": "cartridges/eagles-nest/",
+      "enabled": true
+    },
+    {
+      "app_id": "corvid",
+      "name": "KAOS LABS FOR HUMANITY CORVID",
+      "category": "research",
+      "scope": "private-research",
+      "source_bundle": "kaos-labs-for-humanity-corvid.zip",
+      "runtime": "vite-react",
+      "entrypoint": "src/main.tsx",
+      "backend_assets": ["backend/exporter.py"],
+      "frame_permissions": [],
+      "declared_capabilities": ["server_side_gemini_api"],
+      "mount": "cartridges/corvid/",
+      "enabled": true
+    },
+    {
+      "app_id": "bio-tank",
+      "name": "The Bio-Tank",
+      "category": "research",
+      "scope": "private-research",
+      "source_bundle": "the-bio-tank(1).zip",
+      "runtime": "vite-react-node",
+      "entrypoint": "src/main.tsx",
+      "server_entrypoint": "server.ts",
+      "frame_permissions": ["microphone"],
+      "declared_capabilities": ["server_side_gemini_api"],
+      "mount": "cartridges/bio-tank/",
+      "enabled": true
+    },
+    {
+      "app_id": "digital-assembly-line",
+      "name": "The Digital Assembly Line",
+      "category": "education-research",
+      "scope": "private-or-approved-public",
+      "source_bundle": "the-digital-assembly-line.zip",
+      "runtime": "vite-react",
+      "entrypoint": "src/main.tsx",
+      "frame_permissions": [],
+      "declared_capabilities": ["server_side_gemini_api"],
+      "mount": "cartridges/digital-assembly-line/",
+      "enabled": true
+    },
+    {
+      "app_id": "war-window",
+      "name": "WAR WINDOW - Conflict Contacts & Support Assets",
+      "category": "humanitarian-support",
+      "scope": "approved-public-resource",
+      "source_bundle": "war-window---conflict-contacts-&-support-assets.zip",
+      "runtime": "vite-react",
+      "entrypoint": "src/main.tsx",
+      "frame_permissions": [],
+      "declared_capabilities": ["server_side_gemini_api"],
+      "mount": "cartridges/war-window/",
+      "enabled": true
+    },
+    {
+      "app_id": "lisa-braid",
+      "name": "LISA Braid: Universal Spectral Structure",
+      "category": "research-visualization",
+      "scope": "private-research",
+      "source_bundle": "lisa-braid_-universal-spectral-structure.zip",
+      "runtime": "vite-react-three",
+      "entrypoint": "index.tsx",
+      "frame_permissions": [],
+      "declared_capabilities": ["server_side_gemini_api"],
+      "mount": "cartridges/lisa-braid/",
+      "enabled": true
+    },
+    {
+      "app_id": "pandora-sat-track",
+      "name": "Pandora Sat-Track",
+      "category": "pandora-mini-app",
+      "scope": "private-research",
+      "source_bundle": "pandora-sat-track.zip",
+      "runtime": "vite-react",
+      "entrypoint": "src/main.tsx",
+      "frame_permissions": [],
+      "declared_capabilities": ["server_side_gemini_api", "web_worker_telemetry_analysis"],
+      "mount": "cartridges/pandora-sat-track/",
+      "enabled": true
+    }
+  ]
+}
