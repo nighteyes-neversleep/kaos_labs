@@ -1,0 +1,43 @@
+{
+  "dock_id": "kaos-family-dock",
+  "version": "0.1.0",
+  "role": "private-family-launcher",
+  "registry": "../registry/apps.json",
+  "runtime_config": "config.json",
+  "profile_scoped": true,
+  "offline_tolerant": true,
+  "app_isolation_required": true,
+  "private_data_shared_by_default": false,
+  "identity": {
+    "provider": "omi-client",
+    "personal_capsule_required": true,
+    "trusted_device_supported": true,
+    "pin_fallback_supported": true
+  },
+  "privacy": {
+    "real_family_profiles_committed": false,
+    "cross_profile_read_default": false,
+    "cross_app_read_default": false,
+    "tokens_in_browser": false
+  },
+  "availability": {
+    "primary_and_mirror_aware": true,
+    "offline_app_status_visible": true,
+    "dock_survives_single_app_failure": true
+  },
+  "accessibility": {
+    "screen_reader": true,
+    "keyboard": true,
+    "large_targets": true,
+    "high_contrast": true,
+    "reduced_motion": true,
+    "plain_language": true
+  },
+  "hard_rules": {
+    "apps_remain_isolated": true,
+    "private_data_not_shared": true,
+    "no_profile_enumeration": true,
+    "no_secret_storage_in_client": true,
+    "no_public_indexing": true
+  }
+}
