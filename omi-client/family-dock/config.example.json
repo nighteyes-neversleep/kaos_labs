@@ -1,0 +1,32 @@
+{
+  "dock_title": "Family Dock",
+  "profile": {
+    "profile_id": "family-member-placeholder",
+    "display_name": "Family Member",
+    "helper_label": "Family Help"
+  },
+  "apps": [
+    {
+      "app_id": "eagles-nest",
+      "label": "Eagle's Nest",
+      "description": "Workshop, projects, plans, office and assistant",
+      "href": "https://eagle.example.invalid/",
+      "enabled": true
+    },
+    {
+      "app_id": "war-window",
+      "label": "War Window",
+      "description": "Travel-aware conflict, contacts and support information",
+      "href": "https://war-window.example.invalid/",
+      "enabled": true
+    }
+  ],
+  "help": {
+    "enabled": true,
+    "href": "#help"
+  },
+  "privacy": {
+    "shared_projects_visible_only_when_explicitly_granted": true,
+    "office_vault_visible_only_when_explicitly_granted": true
+  }
+}
