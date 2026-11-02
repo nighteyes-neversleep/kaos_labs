@@ -1,0 +1,434 @@
+{
+  "sourceCommit": "112f946d9e4f4301c58e1081612ab28db945f698",
+  "archive": "OMI_DUAL_FORK_PAYLOAD.zip",
+  "archiveSha256": "af0dd14c084ad755392f7154446b50bf2b797a9bfafcd332f8705eceaa4608af",
+  "contents": "Complete tracked kaos_labs source at the named commit",
+  "excludes": "Ignored local state, signing private keys, credentials, dependency caches and Git history",
+  "files": [
+    {
+      "path": "kaos_labs/.dockerignore",
+      "bytes": 83,
+      "sha256": "228d42ace26721ecd053ea18b8700a8fd6629d2332c786cfa82b4207783dbb6d"
+    },
+    {
+      "path": "kaos_labs/.gitignore",
+      "bytes": 84,
+      "sha256": "a544b8a526c6cc31e55f21054f3e6a691e5232f51a2a6d0a2ad85e0ebfe18be6"
+    },
+    {
+      "path": "kaos_labs/CLAUDE.md",
+      "bytes": 2828,
+      "sha256": "a996f9eeca4dc1ecd238574eb92a5597b9e36909760cf52b2d64beedd4babf2c"
+    },
+    {
+      "path": "kaos_labs/Dockerfile",
+      "bytes": 741,
+      "sha256": "f49d471142e78e7c1857a9dc71987e53974b1d6b92ffd87751a05cc6d979f5b7"
+    },
+    {
+      "path": "kaos_labs/README.md",
+      "bytes": 9352,
+      "sha256": "2f06ca8d501f8a6cd1ff95f0fde9b4105b79113525464ee43677f486769b0c2d"
+    },
+    {
+      "path": "kaos_labs/bundle/AI-HANDOFF.md",
+      "bytes": 3917,
+      "sha256": "3fc6da894d01c5aa758cf0ea29e3bec6bcb7955869533c13795e33b6c04f9480"
+    },
+    {
+      "path": "kaos_labs/bundle/README.md",
+      "bytes": 2960,
+      "sha256": "9ca622a3795063d203d336450611c7d12ae1bcd91bad955994cde922b61faf8c"
+    },
+    {
+      "path": "kaos_labs/bundle/build.mjs",
+      "bytes": 20322,
+      "sha256": "5e09c1ee924a44cef03257acfbd3ebdcb55c2b699e7e574376bb22071b882c40"
+    },
+    {
+      "path": "kaos_labs/bundle/build.test.mjs",
+      "bytes": 12035,
+      "sha256": "03a06b23726061c2fb0489ae600a20800690995a983126c193e3ed4dad0cb404"
+    },
+    {
+      "path": "kaos_labs/docs/CORPORATE-MAIL-FLOW.md",
+      "bytes": 13061,
+      "sha256": "3e91b9dd743d5b4b91bbaea9e29fdfeade29c3729cab06f525c376beaef294f3"
+    },
+    {
+      "path": "kaos_labs/docs/RELAY-REVIEW-CORRECTIONS.md",
+      "bytes": 3452,
+      "sha256": "800f5627685a37621565f79f9f3ba22ddea800ae29e5e51d684e4dbf282a4ddc"
+    },
+    {
+      "path": "kaos_labs/docs/accessibility.md",
+      "bytes": 11020,
+      "sha256": "8f7fa2c57dbebe67ae6a327ae055f1945b9d77f570d698a5c453c273b552bffb"
+    },
+    {
+      "path": "kaos_labs/docs/architecture.md",
+      "bytes": 13721,
+      "sha256": "d6ed34a5a4286b0ed678ba9c09709385168120939f42fb184440acee2489cee8"
+    },
+    {
+      "path": "kaos_labs/docs/collaboration.md",
+      "bytes": 4871,
+      "sha256": "3f85788ac3a56577e70f94f986600b01aec185e8e045182bddd2d58dd396d0d3"
+    },
+    {
+      "path": "kaos_labs/docs/forum-api.md",
+      "bytes": 6464,
+      "sha256": "f6feca6fc4ed3b4243e3cc9488c6906f297a7114ce13a597f5b55285fbf84a30"
+    },
+    {
+      "path": "kaos_labs/index.html",
+      "bytes": 599,
+      "sha256": "76fa06626538cff848921b60e48067acbc582b43044034b605f85cbb6f54d486"
+    },
+    {
+      "path": "kaos_labs/node/README.md",
+      "bytes": 5443,
+      "sha256": "728e5bcc075b6e524ffd259a97921767732a9c319180dfd6a02bd0ee29231a1c"
+    },
+    {
+      "path": "kaos_labs/node/diagnose.mjs",
+      "bytes": 8027,
+      "sha256": "67c391a9db5ecb2caace237836336accb0bbcd136b40c8fcbd9d4fe925172534"
+    },
+    {
+      "path": "kaos_labs/node/diagnose.sh",
+      "bytes": 281,
+      "sha256": "bcb369e7747db0147a54d48f5ca39e98c0a9c268e49ef44d5762ed11fa1511c8"
+    },
+    {
+      "path": "kaos_labs/node/discover.mjs",
+      "bytes": 28559,
+      "sha256": "374b65cc97b8193a2537ffcc441a46ba8c3d3961d20d8253895229f5ddc76c82"
+    },
+    {
+      "path": "kaos_labs/node/discover.test.mjs",
+      "bytes": 12354,
+      "sha256": "0aadb1b6fad50db7624b0c9b1e61a44619c8a71c589c1f88f0b29d529d3bbf29"
+    },
+    {
+      "path": "kaos_labs/node/install.sh",
+      "bytes": 346,
+      "sha256": "a38ea485fe9a588fd49b4101a0166aa83f47bd0251fa0791f98935ba4ca9c21f"
+    },
+    {
+      "path": "kaos_labs/node/nodectl.sh",
+      "bytes": 277,
+      "sha256": "ec0dc59564a800ced3d5b4cfbe3468b8a8487be597879384357dc5d97f1dad0c"
+    },
+    {
+      "path": "kaos_labs/omi-client/capsules/schema.json",
+      "bytes": 4302,
+      "sha256": "7fa76da76ef46222f3f72af5c36c72059a2dfa4aa9b67a288631ba8ff9760467"
+    },
+    {
+      "path": "kaos_labs/omi-client/cartridges/README.md",
+      "bytes": 1060,
+      "sha256": "50dcf01c836028d70c02c286c015ea09214ae23ba71a43d49a21969e09a1f998"
+    },
+    {
+      "path": "kaos_labs/omi-client/cartridges/eagles-nest/README.md",
+      "bytes": 4652,
+      "sha256": "2a6c0e52492bc2fae87ccb373c5dfafb70f17fb9c47885822f3e6de76eedb890"
+    },
+    {
+      "path": "kaos_labs/omi-client/cartridges/eagles-nest/index.html",
+      "bytes": 23067,
+      "sha256": "0b4613315ab6bdeec22f9ed34d140ac5ef2cf0975ca5a68d20ba1e0499b290c3"
+    },
+    {
+      "path": "kaos_labs/omi-client/manifest.json",
+      "bytes": 840,
+      "sha256": "0220a19d8cb0681d4a93ef432898b3d3d680d164e7c02aebb69a61c74c392632"
+    },
+    {
+      "path": "kaos_labs/omi-client/mesh/talky-spider.json",
+      "bytes": 1814,
+      "sha256": "26bedc9f1eca13051c66aaa5f03f1170b0a8f23985ba5171fab0bd12469f37a6"
+    },
+    {
+      "path": "kaos_labs/omi-client/registry/apps.json",
+      "bytes": 4084,
+      "sha256": "439e635760188c5597cf2f3c5d0d26edd39f455590f5ece231b24cc051119c08"
+    },
+    {
+      "path": "kaos_labs/omi-client/shell/shell.json",
+      "bytes": 1282,
+      "sha256": "d77b9a79c293601aac0f43f1c67dee9a626fc63b174317f9cc10188d1d1167da"
+    },
+    {
+      "path": "kaos_labs/package-lock.json",
+      "bytes": 60189,
+      "sha256": "332cbc1bf7c578bd6e2e94b6ae4502a029bfc5de3f2ccd6c165d4a99c7aac881"
+    },
+    {
+      "path": "kaos_labs/package.json",
+      "bytes": 2070,
+      "sha256": "28602aa04a1f0fbb0152ce860bc73bd9587e09ba82f79d85d7c5be02482addd0"
+    },
+    {
+      "path": "kaos_labs/relay/ADVISORIES.md",
+      "bytes": 7223,
+      "sha256": "f8837c9cd71cbe8dfeb4ff072158ff1089913520d4ebe2aade410b055efe8eda"
+    },
+    {
+      "path": "kaos_labs/relay/GIT-MAILBOX.md",
+      "bytes": 9873,
+      "sha256": "ea61c03365f86c2e9137406d2a4d69dbce47353b4a141ffb450d6e459f764c65"
+    },
+    {
+      "path": "kaos_labs/relay/MAILROOM.md",
+      "bytes": 5383,
+      "sha256": "7615f5902507bda9b15dbab104074d325616dc861ea6291b8babe811ff488163"
+    },
+    {
+      "path": "kaos_labs/relay/MODEL-ADAPTER.md",
+      "bytes": 8733,
+      "sha256": "ee0eaa3188cdb031aed010515bce1d65e21c44b0695944c2e8cc711d494196ee"
+    },
+    {
+      "path": "kaos_labs/relay/README.md",
+      "bytes": 9647,
+      "sha256": "025c7990bb9603519018416815cdebf1cf42872f14cb2ecd34d685ac7fea7348"
+    },
+    {
+      "path": "kaos_labs/relay/STATION.md",
+      "bytes": 10073,
+      "sha256": "3788cc1bdf2edfe93c5643caa9d4d8d73b625785dde10cc90a8b3e199bc2f080"
+    },
+    {
+      "path": "kaos_labs/relay/advisory.mjs",
+      "bytes": 15073,
+      "sha256": "203f9e837ca6467deea1cc7f65cb871a0b37b8e7a82070d030c8f340b77831d5"
+    },
+    {
+      "path": "kaos_labs/relay/advisory.test.mjs",
+      "bytes": 12926,
+      "sha256": "007753b468c00d16c5227b0981ec9e9dfb4454c9b87cc48562ba2a4bb76e963c"
+    },
+    {
+      "path": "kaos_labs/relay/git-worker.mjs",
+      "bytes": 21421,
+      "sha256": "4d19a598dde77cb23e26f367aa03c9872151d7b913edbe8f2342cac6b16f98ab"
+    },
+    {
+      "path": "kaos_labs/relay/git-worker.test.mjs",
+      "bytes": 14283,
+      "sha256": "d21e9982b94c35a647ad2d84329e8cc387211d4946abfbe9d0756ae78698e6cc"
+    },
+    {
+      "path": "kaos_labs/relay/mailroom.mjs",
+      "bytes": 13065,
+      "sha256": "49def969291dad509075270b7d56ff0a3d04cdd7a2141577981c6e6ae929b883"
+    },
+    {
+      "path": "kaos_labs/relay/mailroom.test.mjs",
+      "bytes": 12450,
+      "sha256": "c0934b06cacf17f80f6045a1ec6ac5638ba15533afbc413f917f5b9bf2987f57"
+    },
+    {
+      "path": "kaos_labs/relay/model-adapter.mjs",
+      "bytes": 25448,
+      "sha256": "48bb06a31f4017815b14104b0073e04e1a9292959be70a12c29aaa9652264f15"
+    },
+    {
+      "path": "kaos_labs/relay/model-adapter.test.mjs",
+      "bytes": 17334,
+      "sha256": "2728759956d14905bd8e62198ea4764b84334be77813d866ee421a964f2efdc8"
+    },
+    {
+      "path": "kaos_labs/relay/station.mjs",
+      "bytes": 14400,
+      "sha256": "84b5223f407d0b4c9e300124bf0ac827e262db72d88ef08bac921417b4c09103"
+    },
+    {
+      "path": "kaos_labs/relay/station.test.mjs",
+      "bytes": 16877,
+      "sha256": "410da1df3a2c8181dc4bb686454309c1eb3466e4cf17365d2a96cc9ef327ce46"
+    },
+    {
+      "path": "kaos_labs/relay/worker.mjs",
+      "bytes": 22267,
+      "sha256": "5275cadd4bcc6add9e9eb40ae975d4086f848849e3b809092c25317a708c9e90"
+    },
+    {
+      "path": "kaos_labs/relay/worker.test.mjs",
+      "bytes": 17555,
+      "sha256": "ec18e5f386644bb9bfbeae2204b75386c4d40f55af7da9b185d4bcb6b8601f8f"
+    },
+    {
+      "path": "kaos_labs/scripts/accessibility-smoke.mjs",
+      "bytes": 10266,
+      "sha256": "5297f997e579062bf1a8d6db6acdd4740d54a75b5206ad1905c2e2d24d671e70"
+    },
+    {
+      "path": "kaos_labs/scripts/browser-smoke.mjs",
+      "bytes": 13987,
+      "sha256": "c3e3593434b68a9f9672207593c30d8136046134e35f4e22a30b1233695d63f2"
+    },
+    {
+      "path": "kaos_labs/scripts/forum-browser-smoke.mjs",
+      "bytes": 9532,
+      "sha256": "72fb0f6a8e04a597bf661edadb88fa3bdd6754d2d9701bb8610a614f8d474dfe"
+    },
+    {
+      "path": "kaos_labs/scripts/prepare-forum.mjs",
+      "bytes": 1091,
+      "sha256": "fe79d1228925886ad6a6678bbb314db0d014fea63fa17f9d8f9f8ae77fc6a3d0"
+    },
+    {
+      "path": "kaos_labs/scripts/sign-cartridges.mjs",
+      "bytes": 2045,
+      "sha256": "d7565f4cd5333111d6d5e4713ea882a3610f42faf0cab9f131d09432dda77f2a"
+    },
+    {
+      "path": "kaos_labs/scripts/virtual-team-sim.mjs",
+      "bytes": 25610,
+      "sha256": "533e69563b6c2cfea77e7c4306c4ca57bee87dfa9f5a9429638a761cd3dc7996"
+    },
+    {
+      "path": "kaos_labs/server/credential-paths.test.ts",
+      "bytes": 1817,
+      "sha256": "8a1f937fcfd1dec9770e91b4236f6dc5004080e8ae952da7070a0893ca4dabf0"
+    },
+    {
+      "path": "kaos_labs/server/forum-store.test.ts",
+      "bytes": 20297,
+      "sha256": "710e7156fd67e22ef9a904e573a938c4c7182a3d164b3869d3b61fe3cc4721d3"
+    },
+    {
+      "path": "kaos_labs/server/forum-store.ts",
+      "bytes": 15799,
+      "sha256": "922c96dc6ff3e330bb8faf7d8f02f3b6c3504a7daf75a1957b3a7c801085d9c3"
+    },
+    {
+      "path": "kaos_labs/server/http.test.ts",
+      "bytes": 16533,
+      "sha256": "e08bbb0a4cc94396b3b0e8c5d51d029084ee35edfe35879439cb4a3f50917f7b"
+    },
+    {
+      "path": "kaos_labs/server/http.ts",
+      "bytes": 12692,
+      "sha256": "3651b99bd286064d6dd1e0db174d0af146f3d14dc39787c697a99ae568b009be"
+    },
+    {
+      "path": "kaos_labs/server/index.ts",
+      "bytes": 4092,
+      "sha256": "f8b5c8d18f07ce4cf6ca9bbfc3f9955c77b807ed093c6132166aa910be20956f"
+    },
+    {
+      "path": "kaos_labs/server/participant-cli.ts",
+      "bytes": 4553,
+      "sha256": "d95a182fb28ab3c53c46df56088bf24ed587bada420414184ffb35c87b04a866"
+    },
+    {
+      "path": "kaos_labs/src/App.tsx",
+      "bytes": 38295,
+      "sha256": "dec6f61079c453470d8d853d1c71966920acf7e58415c90fa749e0ce9085705e"
+    },
+    {
+      "path": "kaos_labs/src/components/AccessibleDialog.tsx",
+      "bytes": 3613,
+      "sha256": "3f4980e32eacc156fc839b26239750f0dab99b5ec196604d96e0268323bb2e5a"
+    },
+    {
+      "path": "kaos_labs/src/components/CartridgeHost.tsx",
+      "bytes": 3727,
+      "sha256": "a8b2650b9e27599211201a860e132568d6b2799e577ee3af144f44f27594ddc2"
+    },
+    {
+      "path": "kaos_labs/src/components/CodexLab.tsx",
+      "bytes": 28736,
+      "sha256": "f01cc2fae7316c52245b11fbb38e4f29d78f79d34cf4aec7a4ecda566a264783"
+    },
+    {
+      "path": "kaos_labs/src/components/GovernanceWorkbench.tsx",
+      "bytes": 26864,
+      "sha256": "891a46f3bc2cef52694d0f871d5f568ae4c7537eaa8b588529bd3255867cd3b5"
+    },
+    {
+      "path": "kaos_labs/src/components/Icons.tsx",
+      "bytes": 2653,
+      "sha256": "6711b1e48531c04443c0bd13abb6a5c9ec078c9318fd5cf8094be47b8fa73c3c"
+    },
+    {
+      "path": "kaos_labs/src/components/SharedForum.tsx",
+      "bytes": 30429,
+      "sha256": "d8aa9e4104be7bf4420ff228b42f36a7eaa3b96b5bfa60623788886d70d0846b"
+    },
+    {
+      "path": "kaos_labs/src/core/capsule.test.ts",
+      "bytes": 5635,
+      "sha256": "b6d1a2b190385924d6eecea16ee99d760c8c431155304cff201f37f9d57285ab"
+    },
+    {
+      "path": "kaos_labs/src/core/capsule.ts",
+      "bytes": 10102,
+      "sha256": "b7104cd53ff0053256ac27dd73c2a1b18e86f394a535ccf429d58c8beeccf811"
+    },
+    {
+      "path": "kaos_labs/src/core/cartridges.test.ts",
+      "bytes": 1803,
+      "sha256": "ed38a5763db6636ad83e8a6115c753ea0f96d29fdb3202838c7ec11284384fb7"
+    },
+    {
+      "path": "kaos_labs/src/core/cartridges.ts",
+      "bytes": 3927,
+      "sha256": "d50cff0ca19d758d4416199759bd9864c3f8dde5fbcf6e4e655b8e20e52624f0"
+    },
+    {
+      "path": "kaos_labs/src/core/codex.test.ts",
+      "bytes": 8705,
+      "sha256": "dd39c9e35d512f14dcb7b84be0c8f4ef21b30398b04d87743802594b03427d4a"
+    },
+    {
+      "path": "kaos_labs/src/core/codex.ts",
+      "bytes": 12375,
+      "sha256": "a3e954fd45e1fe45d9586471a3387a5a207bcfb31b50580e4efca9a6d0e322f5"
+    },
+    {
+      "path": "kaos_labs/src/core/governance.test.ts",
+      "bytes": 6546,
+      "sha256": "7589a19a54944a01d0fa3e1bab84ed76d449971d9a71d8f851a32b0cb1051ae6"
+    },
+    {
+      "path": "kaos_labs/src/core/governance.ts",
+      "bytes": 11246,
+      "sha256": "7eade4e10d917cdbcab1ca3826802e5f452d45df90d8d82d0a425cbe00e167f1"
+    },
+    {
+      "path": "kaos_labs/src/core/sharing.test.ts",
+      "bytes": 5710,
+      "sha256": "03142c131cd0573fdba9f85c9a68958f901506c819403facba8f6377ca8b1a48"
+    },
+    {
+      "path": "kaos_labs/src/core/sharing.ts",
+      "bytes": 3875,
+      "sha256": "c39edcdc990c9b21355279c210483af6bd096606a5652bfe93f5ad28e9f3df13"
+    },
+    {
+      "path": "kaos_labs/src/main.tsx",
+      "bytes": 222,
+      "sha256": "fc400cf6024a7aaa373ad3ad5f17352466a4912ebe94150119bd3476e52d1806"
+    },
+    {
+      "path": "kaos_labs/src/styles.css",
+      "bytes": 70751,
+      "sha256": "ed9391c591fb1cde42a03a93341aea7d9bff940cebf1d22c0a9130de11b38043"
+    },
+    {
+      "path": "kaos_labs/tsconfig.json",
+      "bytes": 466,
+      "sha256": "1a4d5528620a380b624f71d75b305eec10a644e20dff77be08688f27ce93d1e5"
+    },
+    {
+      "path": "kaos_labs/vite.config.ts",
+      "bytes": 518,
+      "sha256": "a55a76971203c2beed5f510395c462aade89a3a1ea59825c13578e2045ba8fcd"
+    }
+  ]
+}
