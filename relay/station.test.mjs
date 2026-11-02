@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { randomUUID } from 'node:crypto';
 import * as fs from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
@@ -52,7 +53,7 @@ test('config loader accepts owner-private UTF-8 JSON and refuses symlinks/shared
 test('scheduler bounds concurrency while every enabled seat completes exactly one cycle', async t => {
   const { config } = await fixture(t, { participants: Array.from({ length: 7 }, (_, n) => ({ id: `seat-${n}`, enabled: true })), concurrency: 2 });
   let active = 0; let peak = 0; const calls = new Map();
-  const supervisor = new StationSupervisor(config, {
+  const supervisor = new StationSupervisor(config, { mailSorter: async () => ({}),
     log: () => {},
     workerFactory: seat => ({ runOnce: async () => {
       active++; peak = Math.max(peak, active); calls.set(seat.participantId, (calls.get(seat.participantId) || 0) + 1);
@@ -75,8 +76,8 @@ test('seat directories and identity bindings stay separate and survive superviso
       return { received: 0, sent: 0, rejected: 0 };
     } };
   };
-  await new StationSupervisor(config, { workerFactory: factory, log: () => {} }).runOnce();
-  await new StationSupervisor(config, { workerFactory: factory, log: () => {} }).runOnce();
+  await new StationSupervisor(config, { mailSorter: async () => ({}), workerFactory: factory, log: () => {} }).runOnce();
+  await new StationSupervisor(config, { mailSorter: async () => ({}), workerFactory: factory, log: () => {} }).runOnce();
   for (const id of ['deepseek', 'claude']) {
     assert.equal(JSON.parse(await fs.readFile(join(config.directory, id, 'adapter-state.json'), 'utf8')).count, 2);
     const seat = seen.find(value => value.participantId === id);
@@ -88,7 +89,7 @@ test('seat directories and identity bindings stay separate and survive superviso
 test('disabled seats are not instantiated and do not create state directories', async t => {
   const { config } = await fixture(t, { participants: [{ id: 'active', enabled: true }, { id: 'disabled', enabled: false }] });
   const started = [];
-  const supervisor = new StationSupervisor(config, { log: () => {}, workerFactory: seat => {
+  const supervisor = new StationSupervisor(config, { mailSorter: async () => ({}), log: () => {}, workerFactory: seat => {
     started.push(seat.participantId); return { runOnce: async () => ({}) };
   } });
   const result = await supervisor.runOnce();
@@ -98,7 +99,7 @@ test('disabled seats are not instantiated and do not create state directories', 
 
 test('one failed seat does not stop others, backs off across cycles, and recovers', async t => {
   const { config } = await fixture(t); let now = 1_000_000; const calls = { deepseek: 0, claude: 0 }; const logs = [];
-  const supervisor = new StationSupervisor(config, {
+  const supervisor = new StationSupervisor(config, { mailSorter: async () => ({}),
     now: () => now, log: event => logs.push(event),
     workerFactory: seat => ({ runOnce: async () => {
       calls[seat.participantId]++;
@@ -117,7 +118,7 @@ test('one failed seat does not stop others, backs off across cycles, and recover
 
 test('transport logs forward only sanitized IDs, counts, and status', async t => {
   const { config } = await fixture(t); const logs = [];
-  const supervisor = new StationSupervisor(config, {
+  const supervisor = new StationSupervisor(config, { mailSorter: async () => ({}),
     log: event => logs.push(event),
     workerFactory: (seat, options) => ({ runOnce: async () => {
       options.log({ event: 'git_relay_cycle', received: 2, sent: 'private payload', rejected: -1, body: 'secret message', token: 'secret token', commit: 'not forwarded' });
@@ -133,7 +134,7 @@ test('transport logs forward only sanitized IDs, counts, and status', async t =>
 test('abort stops scheduling queued seats while allowing an active cycle to finish safely', async t => {
   const { config } = await fixture(t, { concurrency: 1, participants: [{ id: 'first' }, { id: 'second' }, { id: 'third' }] });
   const stop = new AbortController(); const calls = [];
-  const supervisor = new StationSupervisor(config, {
+  const supervisor = new StationSupervisor(config, { mailSorter: async () => ({}),
     log: () => {}, workerFactory: seat => ({ runOnce: async () => { calls.push(seat.participantId); stop.abort(); return {}; } }),
   });
   const result = await supervisor.runOnce({ signal: stop.signal });
@@ -143,7 +144,7 @@ test('abort stops scheduling queued seats while allowing an active cycle to fini
 test('runOnce has no implicit repeat loop and overlapping cycles are refused', async t => {
   const { config } = await fixture(t); let calls = 0; let finish;
   const gate = new Promise(resolveGate => { finish = resolveGate; });
-  const supervisor = new StationSupervisor(config, { log: () => {}, workerFactory: () => ({ runOnce: async () => { calls++; await gate; return {}; } }) });
+  const supervisor = new StationSupervisor(config, { mailSorter: async () => ({}), log: () => {}, workerFactory: () => ({ runOnce: async () => { calls++; await gate; return {}; } }) });
   const running = supervisor.runOnce();
   await assert.rejects(supervisor.runOnce(), { code: 'CYCLE_ACTIVE' });
   finish(); await running; await delay(10); assert.equal(calls, 2);
@@ -151,9 +152,119 @@ test('runOnce has no implicit repeat loop and overlapping cycles are refused', a
 
 test('continuous loop exits when its wait is aborted without starting another round', async t => {
   const { config } = await fixture(t); const stop = new AbortController(); let calls = 0; let waits = 0;
-  const supervisor = new StationSupervisor(config, {
+  const supervisor = new StationSupervisor(config, { mailSorter: async () => ({}),
     log: () => {}, workerFactory: () => ({ runOnce: async () => { calls++; return {}; } }),
     wait: async (milliseconds, signal) => { waits++; assert.equal(milliseconds, 15000); assert.equal(signal, stop.signal); stop.abort(); throw new Error('aborted'); },
   });
   await supervisor.run({ signal: stop.signal }); assert.equal(calls, 2); assert.equal(waits, 1);
+});
+
+test('seat aliases are bounded distinct routing labels; shared aliases represent distribution copies', async t => {
+  const { config } = await fixture(t);
+  const participants = [
+    { id: 'claude-route66', addresses: ['claude', 'reviewers'] },
+    { id: 'gemini-cloud', addresses: ['gemini', 'reviewers'] },
+  ];
+  const checked = validateStationConfig({ ...config, participants });
+  assert.deepEqual(checked.participants[0].addresses, ['claude', 'reviewers']);
+  assert.deepEqual(checked.participants[1].addresses, ['gemini', 'reviewers']);
+  participants[0].addresses.push('later-change');
+  assert.deepEqual(checked.participants[0].addresses, ['claude', 'reviewers']);
+  assert.deepEqual(validateStationConfig(config).participants[0].addresses, []);
+  const invalid = [
+    [{ id: 'all' }], [{ id: 'BROADCAST' }],
+    [{ id: 'seat', addresses: 'not-an-array' }], [{ id: 'seat', addresses: ['seat'] }],
+    [{ id: 'seat', addresses: ['ALIAS', 'alias'] }], [{ id: 'seat', addresses: ['all'] }],
+    [{ id: 'seat', addresses: ['broadcast'] }], [{ id: 'seat', addresses: ['../other'] }],
+    [{ id: 'seat', addresses: [null] }], [{ id: 'seat', addresses: Array.from({ length: 32 }, (_, i) => `alias-${i}`) }],
+    [{ id: 'seat', addresses: new Array(1) }],
+  ];
+  for (const seats of invalid) assert.throws(() => validateStationConfig({ ...config, participants: seats }), { code: 'INVALID_CONFIG' });
+});
+
+test('a successful transport cycle sorts its own seat before reporting completion and only logs numeric mail counts', async t => {
+  const { config } = await fixture(t, { participants: [{ id: 'claude-route66', addresses: ['claude'] }] });
+  const order = []; const inputs = []; const logs = [];
+  const supervisor = new StationSupervisor(config, {
+    log: event => logs.push(event),
+    workerFactory: worker => ({ runOnce: async () => {
+      order.push('transport');
+      await fs.writeFile(join(worker.directory, 'transport-finished'), 'ready', { mode: 0o600 });
+      return { received: 2 };
+    } }),
+    mailSorter: async input => {
+      order.push('sort'); inputs.push(input);
+      assert.equal(await fs.readFile(join(input.seatDirectory, 'transport-finished'), 'utf8'), 'ready');
+      return { scanned: 2, delivered: 1, addressed: 1, broadcast: 'private body', rejected: 'private data', notForMe: -1, body: 'never log payload' };
+    },
+  });
+  const result = await supervisor.runOnce();
+  assert.deepEqual(order, ['transport', 'sort']);
+  assert.deepEqual(inputs, [{ seatDirectory: join(config.directory, 'claude-route66'), participantId: 'claude-route66', addresses: ['claude'] }]);
+  assert.equal(result.completed, 1);
+  assert.equal(result.participants[0].mail.addressed, 1);
+  assert.equal(result.participants[0].mail.broadcast, 0);
+  assert.equal(result.participants[0].mail.notForMe, 0);
+  assert.ok(!JSON.stringify(logs).includes('private'));
+  assert.ok(!JSON.stringify(logs).includes('never log'));
+  assert.equal(logs.findIndex(event => event.event === 'station_mailroom') < logs.findIndex(event => event.event === 'station_seat'), true);
+});
+
+test('a sorting failure keeps transport data, isolates the failed seat, and participates in retry backoff', async t => {
+  const { config } = await fixture(t); let now = 1_000_000;
+  const sorted = { deepseek: 0, claude: 0 }; const logs = [];
+  const supervisor = new StationSupervisor(config, {
+    now: () => now, log: event => logs.push(event),
+    workerFactory: worker => ({ runOnce: async () => {
+      await fs.writeFile(join(worker.directory, 'raw-data-preserved'), 'transport saved', { mode: 0o600 }); return {};
+    } }),
+    mailSorter: async ({ participantId }) => {
+      sorted[participantId]++;
+      if (participantId === 'deepseek' && sorted.deepseek === 1) throw new Error('private sorting input');
+      return {};
+    },
+  });
+  const first = await supervisor.runOnce();
+  assert.equal(first.failed, 1); assert.equal(first.completed, 1);
+  assert.equal(first.participants[0].code, 'MAIL_SORT_FAILED');
+  assert.equal(await fs.readFile(join(config.directory, 'deepseek', 'raw-data-preserved'), 'utf8'), 'transport saved');
+  const waiting = await supervisor.runOnce();
+  assert.equal(waiting.backoff, 1); assert.equal(sorted.deepseek, 1); assert.equal(sorted.claude, 2);
+  now += 15000;
+  assert.equal((await supervisor.runOnce()).completed, 2);
+  assert.ok(!JSON.stringify(logs).includes('private sorting input'));
+});
+
+test('transport failure does not start mail sorting', async t => {
+  const { config } = await fixture(t, { participants: [{ id: 'one-seat' }] }); let sorts = 0;
+  const supervisor = new StationSupervisor(config, {
+    workerFactory: () => ({ runOnce: async () => { throw new Error('transport did not complete'); } }),
+    mailSorter: async () => { sorts++; return {}; }, log: () => {},
+  });
+  assert.equal((await supervisor.runOnce()).failed, 1); assert.equal(sorts, 0);
+});
+
+test('the production default sorter delivers addressed advisories to working mail and leaves raw input unchanged', async t => {
+  const { config } = await fixture(t, { participants: [{ id: 'claude-route66', addresses: ['claude'] }] });
+  const id = randomUUID();
+  const advisory = {
+    protocol: 'omi-advisory/1', id: 'station-integration-test', kind: 'assignment', from: 'dot', to: ['claude'],
+    taskId: 'QA-CLAUDE-001', summary: 'Review a bounded assigned task.', details: { target: 'test fixture' },
+    createdAt: new Date().toISOString(), requiresAck: true,
+  };
+  const envelope = { version: 1, id, participantId: 'dot', topicId: 'coordination-advisory', body: JSON.stringify(advisory), createdAt: new Date().toISOString(), clientMessageId: 'default-sorter-fixture' };
+  const raw = JSON.stringify(envelope, null, 2) + '\n';
+  const supervisor = new StationSupervisor(config, {
+    workerFactory: worker => ({ runOnce: async () => {
+      await fs.mkdir(join(worker.directory, 'inbox'), { recursive: true, mode: 0o700 });
+      await fs.writeFile(join(worker.directory, 'inbox', `${id}.json`), raw, { mode: 0o600 }); return { received: 1 };
+    } }), log: () => {},
+  });
+  const first = await supervisor.runOnce();
+  assert.equal(first.completed, 1); assert.equal(first.participants[0].mail.addressed, 1);
+  const directory = join(config.directory, 'claude-route66');
+  assert.equal(await fs.readFile(join(directory, 'mail', 'inbox', `${id}.json`), 'utf8'), raw);
+  assert.equal(await fs.readFile(join(directory, 'inbox', `${id}.json`), 'utf8'), raw);
+  assert.equal((await supervisor.runOnce()).participants[0].mail.alreadySorted, 1);
+  assert.equal((await fs.readdir(join(directory, 'mail', 'inbox'))).length, 1);
 });

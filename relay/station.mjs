@@ -6,10 +6,12 @@ import { dirname, isAbsolute, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { setTimeout as delay } from 'node:timers/promises';
 import { GitRelayError, GitRelayWorker, loadGitConfig } from './git-worker.mjs';
+import { sortAgentMail } from './mailroom.mjs';
 
 const CHECKOUT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const SLUG = /^[A-Za-z0-9][A-Za-z0-9_-]{0,99}$/;
 const RESERVED_DIRECTORY = /^(?:CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])$/i;
+const BROADCAST_ADDRESSES = new Set(['all', 'broadcast']);
 const inside = (path, root) => { const part = relative(root, path); return part === '' || (part !== '..' && !part.startsWith(`..${sep}`) && !isAbsolute(part)); };
 const object = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 export class StationError extends Error {
@@ -32,15 +34,23 @@ export function validateStationConfig(value) {
   }
   const ids = new Set();
   const participants = value.participants.map(seat => {
-    if (!object(seat) || Object.keys(seat).some(k => !['id', 'enabled'].includes(k)) || typeof seat.id !== 'string' ||
-        !SLUG.test(seat.id) || RESERVED_DIRECTORY.test(seat.id) || (seat.enabled !== undefined && typeof seat.enabled !== 'boolean')) {
+    if (!object(seat) || Object.keys(seat).some(k => !['id', 'enabled', 'addresses'].includes(k)) || typeof seat.id !== 'string' ||
+        !SLUG.test(seat.id) || RESERVED_DIRECTORY.test(seat.id) || BROADCAST_ADDRESSES.has(seat.id.toLowerCase()) ||
+        (seat.enabled !== undefined && typeof seat.enabled !== 'boolean')) {
       fail('INVALID_CONFIG', 'Each participant needs a portable slug ID and an optional boolean enabled flag.');
     }
     // Case-fold uniqueness also protects case-insensitive Windows/macOS directories.
     const canonical = seat.id.toLowerCase();
     if (ids.has(canonical)) fail('INVALID_CONFIG', 'Station participant IDs must be unique, including letter case.');
     ids.add(canonical);
-    return { id: seat.id, enabled: seat.enabled ?? true };
+    const addresses = seat.addresses ?? [];
+    if (!Array.isArray(addresses) || addresses.length > 31 || Object.keys(addresses).length !== addresses.length ||
+        Object.getOwnPropertySymbols(addresses).length || addresses.some(address => typeof address !== 'string' ||
+        !SLUG.test(address) || BROADCAST_ADDRESSES.has(address.toLowerCase()) || address.toLowerCase() === canonical) ||
+        new Set(addresses.map(address => address.toLowerCase())).size !== addresses.length) {
+      fail('INVALID_CONFIG', 'Each seat may have at most 31 distinct non-broadcast alias addresses, excluding its own ID.');
+    }
+    return { id: seat.id, enabled: seat.enabled ?? true, addresses: [...addresses] };
   });
   const intervalMs = bounded(value.intervalMs, 15_000, 1000, 300_000);
   const concurrency = bounded(value.concurrency, 2, 1, 8);
@@ -91,7 +101,7 @@ async function privateDirectory(path) {
 }
 const SAFE_CODES = new Set(['INVALID_CONFIG', 'INVALID_STATE', 'LOCKED', 'GIT_TIMEOUT', 'GIT_COMMAND_FAILED', 'BINDING_CHANGED',
   'INVALID_HISTORY', 'HISTORY_REWRITTEN', 'MESSAGE_CHANGED', 'MAILBOX_LIMIT', 'INVALID_MESSAGE', 'MESSAGE_CONFLICT',
-  'OUTBOX_CONFLICT', 'GIT_PUSH_FAILED', 'PUSH_UNCONFIRMED', 'PUSH_CONTENTION', 'OUTBOX_CHANGED']);
+  'OUTBOX_CONFLICT', 'GIT_PUSH_FAILED', 'PUSH_UNCONFIRMED', 'PUSH_CONTENTION', 'OUTBOX_CHANGED', 'MAIL_SORT_FAILED']);
 function errorCode(error) {
   return (error instanceof StationError || error instanceof GitRelayError) && SAFE_CODES.has(error.code) ? error.code : 'SEAT_FAILED';
 }
@@ -99,12 +109,15 @@ function errorCode(error) {
 export class StationSupervisor {
   constructor(config, {
     workerFactory = (workerConfig, options) => new GitRelayWorker(workerConfig, options),
+    mailSorter = sortAgentMail,
     log = event => console.log(JSON.stringify(event)),
     now = () => Date.now(),
     wait = (milliseconds, signal) => delay(milliseconds, undefined, { signal }),
   } = {}) {
     this.config = validateStationConfig(config);
     this.workerFactory = workerFactory;
+    if (typeof mailSorter !== 'function') fail('INVALID_CONFIG', 'A mail sorter function is required.');
+    this.mailSorter = mailSorter;
     this.log = log;
     this.now = now;
     this.wait = wait;
@@ -132,8 +145,19 @@ export class StationSupervisor {
         });
       }
       const result = await state.worker.runOnce();
+      let mail;
+      try {
+        mail = await this.mailSorter({ seatDirectory: directory, participantId: seat.id, addresses: [...seat.addresses] });
+      } catch {
+        // Transport persistence succeeds first. Sorting failure leaves the raw
+        // inbox intact and makes this seat retry instead of claiming readiness.
+        fail('MAIL_SORT_FAILED', 'Addressed mail sorting failed; raw transport data was preserved.');
+      }
+      const mailCounts = Object.fromEntries(['scanned', 'delivered', 'addressed', 'broadcast', 'unaddressed', 'quarantined',
+        'notForMe', 'alreadySorted', 'recoveredReceipts'].map(key => [key, count(mail?.[key])]));
+      this.log({ event: 'station_mailroom', participantId: seat.id, ...mailCounts });
       state.failures = 0; state.nextAttemptAt = 0;
-      const status = { participantId: seat.id, status: 'complete', received: count(result?.received), sent: count(result?.sent), rejected: count(result?.rejected) };
+      const status = { participantId: seat.id, status: 'complete', received: count(result?.received), sent: count(result?.sent), rejected: count(result?.rejected), mail: mailCounts };
       this.log({ event: 'station_seat', ...status });
       return status;
     } catch (error) {
@@ -194,7 +218,7 @@ export function exampleStationConfig() {
   return {
     remote: 'https://github.com/nighteyes-neversleep/kaos_labs.git', branch: 'omi-relay',
     directory: process.platform === 'win32' ? 'C:\\Users\\YOUR_USER\\AppData\\Local\\OMI\\station' : '/absolute/private/path/omi-station',
-    participants: [{ id: 'deepseek-route66', enabled: true }, { id: 'claude-route66', enabled: true }, { id: 'spare-seat', enabled: false }],
+    participants: [{ id: 'deepseek-route66', enabled: true, addresses: ['deepseek'] }, { id: 'claude-route66', enabled: true, addresses: ['claude'] }, { id: 'spare-seat', enabled: false }],
     intervalMs: 15000, concurrency: 2, timeoutMs: 30000,
   };
 }
