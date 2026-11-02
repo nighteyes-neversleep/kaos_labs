@@ -8,9 +8,16 @@ import { createForumServer } from './http.ts';
 process.umask(0o077);
 const projectRoot = realpathSync(resolve(dirname(fileURLToPath(import.meta.url)), '..'));
 const requestedDir = resolve(process.env.OMI_FORUM_DATA_DIR || resolve(projectRoot, '../omi-forum-data'));
+const projectAncestors = new Set<string>();
+for (let path = projectRoot; ; path = dirname(path)) {
+  projectAncestors.add(path);
+  if (dirname(path) === path) break;
+}
+const invalidDataDirectory = (path: string) => projectAncestors.has(path) || path.startsWith(projectRoot + sep);
+if (invalidDataDirectory(requestedDir)) throw new Error('Use a dedicated private forum directory outside the checkout and its ancestors.');
 mkdirSync(requestedDir, { recursive: true, mode: 0o700 });
 const dataDir = realpathSync(requestedDir);
-if (dataDir === projectRoot || dataDir.startsWith(projectRoot + sep)) throw new Error('Store forum data outside the application checkout.');
+if (invalidDataDirectory(dataDir)) throw new Error('Use a dedicated private forum directory outside the checkout and its ancestors.');
 chmodSync(dataDir, 0o700);
 const store = new ForumStore(resolve(dataDir, 'forum.sqlite'));
 const bootstrapPath = resolve(dataDir, 'bootstrap-admin.json');

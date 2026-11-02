@@ -38,7 +38,10 @@ try {
     if (parent === root || parent.startsWith(root + sep)) throw new Error('Write credentials outside the checkout and public assets.');
     const filename = resolve(parent, basename(destination));
     if (existsSync(filename)) throw new Error('The output file already exists; refusing to replace credentials.');
-    if (!lstatSync(parent).isDirectory()) throw new Error('The credential output parent must be a private directory.');
+    const parentMetadata = lstatSync(parent);
+    if (!parentMetadata.isDirectory() || (process.getuid && (parentMetadata.uid !== process.getuid() || (parentMetadata.mode & 0o077) !== 0))) {
+      throw new Error('The credential output parent must be an owner-only private directory.');
+    }
     const token = randomBytes(32).toString('base64url');
     const identity = existing ?? { id: participantId, name, role: args.includes('--admin') ? 'admin' as const : 'participant' as const };
     // Keep the only raw key durably before changing the database's accepted hash.

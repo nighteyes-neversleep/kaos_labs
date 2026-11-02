@@ -95,8 +95,14 @@ export class ForumStore {
       chmodSync(dbPath, 0o600);
     }
     this.db = new DatabaseSync(dbPath);
+    let migrating = false;
     try {
       this.db.exec('PRAGMA foreign_keys = ON; PRAGMA busy_timeout = 5000; PRAGMA journal_mode = WAL;');
+      // Serialize the schema read and every migration step across processes.
+      // Reading columns before acquiring the write lock permits two starters to
+      // race the same ALTER, leaving one unable to start despite a valid schema.
+      this.db.exec('BEGIN IMMEDIATE');
+      migrating = true;
       const schemaVersion = this.db.prepare('PRAGMA user_version').get()?.user_version;
       if (schemaVersion !== 0 && schemaVersion !== 1 && schemaVersion !== 2) throw new Error('Unsupported forum database schema version.');
       this.db.exec(`
@@ -126,13 +132,18 @@ export class ForumStore {
           UNIQUE (participant_id, client_message_id)
         ) STRICT;
         CREATE INDEX IF NOT EXISTS messages_by_topic_sequence ON messages(topic_id, sequence);
-        PRAGMA user_version = 2;
       `);
       const participantColumns = this.db.prepare('PRAGMA table_info(participants)').all();
       if (!participantColumns.some((column) => column.name === 'active')) {
         this.db.exec('ALTER TABLE participants ADD COLUMN active INTEGER NOT NULL DEFAULT 1 CHECK (active IN (0, 1))');
       }
+      this.db.exec('PRAGMA user_version = 2');
+      this.db.exec('COMMIT');
+      migrating = false;
     } catch (error) {
+      if (migrating) {
+        try { this.db.exec('ROLLBACK'); } catch { /* Preserve the migration failure. */ }
+      }
       this.db.close();
       throw error;
     }

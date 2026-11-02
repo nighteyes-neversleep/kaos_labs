@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import { DatabaseSync } from 'node:sqlite';
-import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, statSync } from 'node:fs';
-import { spawnSync } from 'node:child_process';
+import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { spawn, spawnSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
@@ -250,6 +250,81 @@ describe('durable authenticated forum store', () => {
     expect(inspect.prepare('PRAGMA user_version').get()?.user_version).toBe(2);
     inspect.close();
   });
+
+  it('serializes simultaneous v1 migrations without duplicate-column startup failure', async () => {
+    const legacyPath = join(dir, 'concurrent-legacy.sqlite');
+    const legacy = new DatabaseSync(legacyPath);
+    legacy.exec(`CREATE TABLE participants (
+      id TEXT PRIMARY KEY, name TEXT NOT NULL, role TEXT NOT NULL,
+      token_hash TEXT NOT NULL UNIQUE, created_at TEXT NOT NULL
+    ) STRICT; PRAGMA user_version = 1;`);
+    legacy.close();
+    const childPath = join(dir, 'migration-child.mjs');
+    const moduleURL = new URL('./forum-store.ts', import.meta.url).href;
+    // Pause one real connection immediately before ALTER. An unprotected second
+    // constructor can migrate first and make this one fail. With BEGIN IMMEDIATE,
+    // the second connection waits before inspecting or changing the schema.
+    writeFileSync(childPath, `
+      import { DatabaseSync } from 'node:sqlite';
+      import { existsSync, writeFileSync } from 'node:fs';
+      import { ForumStore } from ${JSON.stringify(moduleURL)};
+      const [database, directory, seat] = process.argv.slice(2);
+      const original = DatabaseSync.prototype.exec;
+      DatabaseSync.prototype.exec = function(sql) {
+        if (seat === 'second' && sql.trim() === 'BEGIN IMMEDIATE') {
+          writeFileSync(directory + '/second-begin', 'ready');
+        }
+        if (seat === 'first' && sql.startsWith('ALTER TABLE participants ADD COLUMN active')) {
+          writeFileSync(directory + '/first-alter', 'ready');
+          const deadline = Date.now() + 5000;
+          while (!existsSync(directory + '/release-first')) {
+            if (Date.now() >= deadline) throw new Error('Migration fixture timed out');
+            Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 10);
+          }
+        }
+        return original.call(this, sql);
+      };
+      try { const store = new ForumStore(database); store.close(); }
+      catch (error) { console.error(error.message); process.exitCode = 1; }
+    `);
+    const launch = (seat: string) => {
+      const process = spawn(globalThis.process.execPath, [childPath, legacyPath, dir, seat], { stdio: ['ignore', 'ignore', 'pipe'] });
+      let errorOutput = '';
+      process.stderr.setEncoding('utf8');
+      process.stderr.on('data', text => { errorOutput += text; });
+      const done = new Promise<{ code: number | null; errorOutput: string }>((resolve, reject) => {
+        process.once('error', reject);
+        process.once('close', code => resolve({ code, errorOutput }));
+      });
+      return { process, done };
+    };
+    const waitFor = async (path: string) => {
+      const deadline = Date.now() + 3000;
+      while (!existsSync(path)) {
+        if (Date.now() >= deadline) throw new Error('Migration coordination marker timed out');
+        await new Promise(resolve => setTimeout(resolve, 10));
+      }
+    };
+    const first = launch('first');
+    let second: ReturnType<typeof launch> | undefined;
+    try {
+      await waitFor(join(dir, 'first-alter'));
+      second = launch('second');
+      await Promise.race([second.done, waitFor(join(dir, 'second-begin'))]);
+      writeFileSync(join(dir, 'release-first'), 'continue');
+      const outcomes = await Promise.all([first.done, second.done]);
+      for (const result of outcomes) expect(result.code, result.errorOutput).toBe(0);
+      const inspect = new DatabaseSync(legacyPath);
+      try {
+        expect(inspect.prepare('PRAGMA user_version').get()?.user_version).toBe(2);
+        expect(inspect.prepare('PRAGMA table_info(participants)').all().filter(column => column.name === 'active')).toHaveLength(1);
+      } finally { inspect.close(); }
+    } finally {
+      writeFileSync(join(dir, 'release-first'), 'continue');
+      first.process.kill(); second?.process.kill();
+      await Promise.allSettled([first.done, ...(second ? [second.done] : [])]);
+    }
+  }, 10_000);
 
   it('uses bound parameters for content and rejects duplicate participant IDs or tokens', () => {
     const title = "Robert'); DROP TABLE topics; --";

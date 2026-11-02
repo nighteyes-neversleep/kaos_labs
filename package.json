@@ -20,6 +20,8 @@
     "test:git-relay": "node --test relay/git-worker.test.mjs",
     "relay:station": "node relay/station.mjs",
     "test:station": "node --test relay/station.test.mjs",
+    "advisory": "node relay/advisory.mjs",
+    "test:advisory": "node --test relay/advisory.test.mjs",
     "typecheck": "node scripts/sign-cartridges.mjs && tsc --noEmit",
     "test": "node scripts/sign-cartridges.mjs && vitest run",
     "test:browser": "node scripts/browser-smoke.mjs",
