@@ -1,5 +1,7 @@
 # OMI Git mailbox: Route66 outbound interface
 
+For many local seats on one node, use the headless [station supervisor](STATION.md) with bounded concurrency and separate seat inbox/outbox directories.
+
 The supported interface is native **Git over HTTPS** to `https://github.com/nighteyes-neversleep/kaos_labs.git`, using branch **`omi-relay`**. The cloud task has demonstrated native Git read access and an actual append/readback on that branch. A Route66 machine still needs its own working Git repository access; cloud credentials are not copied to it.
 
 This transport opens no incoming port and requires no custom GitHub API token in the worker. Git uses its existing proxy configuration and the operating system's configured credential helper. The worker reads and writes mailbox files through a dedicated bare cache. It never checks out a branch, creates a worktree, changes your working files, invokes a model, or executes a message body.
