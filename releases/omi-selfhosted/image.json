@@ -1,0 +1,14 @@
+{
+  "image": "omi-selfhost:e40156b",
+  "imageId": "sha256:ebcb8ba7500dc37e503bf76a66ed47e5423674ae46b190123815bbd1e5537045",
+  "platform": "linux/amd64",
+  "sourceCommit": "e40156bf6f71eabde8cbc87a2d64a5847403f730",
+  "archive": "omi-image.tar.gz",
+  "archiveSha256": "bf69866a6534a1b0f7306659033b4f6b1e93209b4b0a008444830b1bc1412a43",
+  "requires": [
+    "Docker Engine",
+    "Bash",
+    "Python 3"
+  ],
+  "runtimeModelCallsRequired": 0
+}

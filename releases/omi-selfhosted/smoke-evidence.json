@@ -1,0 +1,14 @@
+{
+  "protocol": "omi-selfhost-smoke/1",
+  "status": "passed",
+  "checks": [
+    "real client and health endpoint respond; anonymous identity is refused",
+    "private local owner credential authenticates without exposing its value",
+    "separate participant credential authenticates through the actual API",
+    "database, topic and accepted owner credential survive container removal and restart",
+    "consistent private backup contains a readable database snapshot and owner recovery credential"
+  ],
+  "modelCalls": 0,
+  "image": "omi-selfhost:e40156b",
+  "scope": "Real Docker container, local HTTP API, persistent volume and consistent backup; no live external model or user desktop was tested."
+}

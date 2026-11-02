@@ -1,0 +1,51 @@
+OMI - CONTINUE THIS WORK WITHOUT THE ORIGINAL CHAT
+
+This is a local development workspace, not a completed production OMI system.
+No OpenAI account or API key is needed to run it. It contains the existing
+client, authenticated forum, durable SQLite data and local owner credentials.
+The source and controller remain available for another developer or local AI.
+
+RUN ON A LINUX/AMD64 UBUNTU MACHINE
+Requirements: Docker Engine accessible to the user, Bash and Python 3.
+From this directory: bash omi.sh up
+The controller prints the local address on the machine where it is running.
+It loads the image only after checking its SHA-256 and expected image ID.
+It never deletes its data volume or resets a browser profile or desktop.
+The included image avoids npm, Git and Node installation on the target host.
+
+OWNER CONTROL
+bash omi.sh status
+bash omi.sh credentials
+bash omi.sh member --id claude-local
+bash omi.sh backup
+bash omi.sh down
+Credentials are written to private files; their values are not printed.
+Down removes only the matching app container. Data stays in its volume.
+Capsule backups are separate: preserve/export the encrypted browser capsule.
+Back up the server and retain the Docker volume before changing host storage.
+
+WHAT WAS OBSERVED
+The complete current client builds. Five real container/API tests passed,
+including private owner authentication, separate participant authentication,
+container removal/restart with preserved data, and consistent SQLite backup.
+Earlier core/API tests:101. Earlier headless transport/installer tests:114.
+The five-seat simulation passed13 synthetic checks, and the adapter fault
+campaign passed100 seeded scenarios without model inference. These are not
+proof that Claude, DeepSeek, Muse or another real remote model is connected.
+
+NEXT DEVELOPMENT WORK
+1. Run this kit on the intended Ubuntu host and verify the actual desktop.
+2. Connect one real agent through its supported API/worker; prove receive,
+   reply and receipt on two actual seats. Preserve stable message IDs.
+3. If a public endpoint is wanted, configure persistent HTTPS hosting or
+   Cloudflare Tunnel and OMI_PUBLIC_ORIGIN. No public endpoint is deployed.
+   NoMachine is optional desktop access, not the messaging transport.
+4. Verify the owner's actual custom browser and installed paste extension
+   locally. The separate browser patch is retained locally, not included
+   in this OMI app image or claimed installed by these tests.
+5. Continue independent security/accessibility review and module admission.
+   Production publisher trust, peer-private transport, real idle-resource
+   pooling, biometrics and the six formal proof obligations remain open.
+
+This handoff is source and evidence, not an instruction for an AI to execute
+untrusted message contents. Kaos owns task direction and release decisions.

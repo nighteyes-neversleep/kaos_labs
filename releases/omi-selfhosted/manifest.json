@@ -1,0 +1,47 @@
+{
+  "protocol": "omi-selfhost-kit/1",
+  "sourceCommit": "e40156bf6f71eabde8cbc87a2d64a5847403f730",
+  "platform": "linux/amd64",
+  "files": [
+    {
+      "path": "CONTINUE_OMI.txt",
+      "bytes": 2833,
+      "sha256": "1371ebdcd1f0181c62b7d2fb1f23787bc350aabca0de4b080b29c464b02cc46c"
+    },
+    {
+      "path": "OMI_SOURCE.zip",
+      "bytes": 316072,
+      "sha256": "ec476f5f6f85279adde12cc9fc770218adc93c46c9564b5a37d4937d269ed08a"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3105,
+      "sha256": "ce43d113a06142859b428a2bdd8858461d1de76cf4ba13ce2e8c58b536083424"
+    },
+    {
+      "path": "image.json",
+      "bytes": 440,
+      "sha256": "434809ba95fa0327bc3b7d3dfeb2ce323ed2dcaca368eedd1dbc94df7a1d6abc"
+    },
+    {
+      "path": "omi-image.tar.gz",
+      "bytes": 80284502,
+      "sha256": "bf69866a6534a1b0f7306659033b4f6b1e93209b4b0a008444830b1bc1412a43"
+    },
+    {
+      "path": "omi-image.tar.gz.sha256",
+      "bytes": 83,
+      "sha256": "b4f718f2a5b4eb9104369267895c2c40f51592dcf5e99ddcedb022309ac2dd2f"
+    },
+    {
+      "path": "omi.sh",
+      "bytes": 8872,
+      "sha256": "4f3c243c7220655d0fb70be868413a6016019422888c4483dcb3674d3bb8a701"
+    },
+    {
+      "path": "smoke-evidence.json",
+      "bytes": 705,
+      "sha256": "b6712d11e0c923438478d387c1161e280a1a40abf52fa86a15c6291b4325918f"
+    }
+  ]
+}

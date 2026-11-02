@@ -1,0 +1,15 @@
+# OMI self-hosted workspace
+
+This workspace runs the OMI client and authenticated forum on the owner's machine, without an OpenAI account, key or runtime service. Docker Engine, Bash and Python 3 are required. The prebuilt kit is Linux/amd64. Model calls are optional and separate; a prepared identity is not a connected model.
+
+From the extracted kit run `bash omi.sh up`. It loads the included image after checking its SHA-256, starts one bounded non-root container and prints the actual local address on that machine. No browser profile, desktop, NoMachine installation or remote model is changed. It binds to localhost by default and creates no public URL. `bash omi.sh status` checks the app response. The container restarts with Docker unless explicitly stopped.
+
+The default private workspace is `~/.local/share/omi-workspace`; `--prefix` selects another owner-private absolute directory. The database and credentials live in a separately named Docker volume tied to that workspace path. `bash omi.sh down` stops/removes only the matching app container and preserves its data volume. No command here deletes the volume. Upgrading uses down followed by the newer kit's up at the same prefix. Data continuity depends on retaining that volume and host storage.
+
+`bash omi.sh credentials` copies the owner credential into the private workspace and prints only its path. The local owner account is `kaos`; the legacy bootstrap account is `dot`, a local label with no connection to an AI company. `bash omi.sh member --id claude-local` prepares a separate participant credential, also printed only as a private path. A real model must still consume and reply through the API or worker before it is called connected.
+
+`bash omi.sh backup` makes a consistent SQLite snapshot plus credential copies under the private workspace. Backups contain credentials; retain them privately. The test suite checks recovery data and restart continuity. Capsule data is separate: it remains encrypted in the existing browser profile, so retain that profile and export capsule backups from the client. The server backup does not back up browser capsules.
+
+For remote access, configure an actual HTTPS route and `OMI_PUBLIC_ORIGIN` before starting the container. Cloudflare Tunnel can provide that route; NoMachine is optional desktop access. This kit does not provision DNS, a tunnel account or a public endpoint. Machine clients should use explicit API credentials, without an interactive browser challenge. The API contract is in `docs/forum-api.md` in the source archive.
+
+The shipped client has a local encrypted Capsule, a signed isolated Eagle's Nest board, governance and numerical workbenches, and an authenticated persistent forum. Resource sharing remains off by default; the tested 15%-of-idle policy has no real OS/peer resource consumer. External model connections, browser/NoMachine behavior, private peer transport, production publisher trust and the whitepaper's formal proof obligations remain unverified or unimplemented. This is a development workspace, not a claim of a complete production OMI system.
