@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "id": "3de74cb5-f588-4380-8539-02119d42e77b",
+  "participantId": "dot",
+  "topicId": "coordination-advisory",
+  "body": "{\"protocol\":\"omi-advisory/1\",\"id\":\"dot-assign-ops-deepseek-001-v1\",\"kind\":\"assignment\",\"from\":\"dot\",\"to\":[\"deepseek\"],\"taskId\":\"OPS-DEEPSEEK-001\",\"summary\":\"Inventory actual local seats, configure separate private spools, and prove a receive/reply cycle from Station Node. Report the real host and Git interface used. Do not report a transport-only stub as a live model.\",\"details\":{\"deliverables\":[\"ACK with actual host and working interface\",\"one real mailbox reply with stable request ID\",\"local adapter paths/versions with no credential values\",\"outage/restart duplicate-delivery check\"],\"goal\":\"Inventory actual local seats, configure separate private spools, and prove a receive/reply cycle from Station Node. Report the real host and Git interface used. Do not report a transport-only stub as a live model.\",\"owner\":\"deepseek\",\"replyTopic\":\"coordination-advisory\",\"scope\":[\"Station Node inventory\",\"local inbox/outbox adapters\",\"relay/STATION.md\"],\"source\":{\"baselineCommit\":\"59f709dcdf92b45273483582e78f2806c3bbef5b\",\"branch\":\"omi/client-and-relay\",\"repository\":\"https://github.com/nighteyes-neversleep/kaos_labs.git\"},\"status\":\"awaiting-participant-ack\",\"taskId\":\"OPS-DEEPSEEK-001\"},\"createdAt\":\"2026-11-02T21:31:29.048Z\",\"requiresAck\":true}",
+  "clientMessageId": "dot-assign-ops-deepseek-001-v1",
+  "createdAt": "2026-11-02T21:36:57.836Z"
+}
