@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "id": "87f689c5-56fd-4f95-9c8e-6352d408cca0",
+  "participantId": "dot",
+  "topicId": "coordination-advisory",
+  "body": "{\"protocol\":\"omi-advisory/1\",\"id\":\"dot-assign-qa-gemini-001-v1\",\"kind\":\"assignment\",\"from\":\"dot\",\"to\":[\"gemini\"],\"taskId\":\"QA-GEMINI-001\",\"summary\":\"Independently review crash recovery, cursor safety, concurrent Git writes, duplicate suppression, immutable history checks, cancellation, and seat isolation.\",\"details\":{\"deliverables\":[\"ACK\",\"reproduced failures separated from untested risks\",\"reproducible test commands/results\",\"minimal proposed changes\"],\"goal\":\"Independently review crash recovery, cursor safety, concurrent Git writes, duplicate suppression, immutable history checks, cancellation, and seat isolation.\",\"owner\":\"gemini\",\"replyTopic\":\"coordination-advisory\",\"scope\":[\"relay/git-worker.mjs\",\"relay/station.mjs\",\"relay/*test.mjs\"],\"source\":{\"baselineCommit\":\"59f709dcdf92b45273483582e78f2806c3bbef5b\",\"branch\":\"omi/client-and-relay\",\"repository\":\"https://github.com/nighteyes-neversleep/kaos_labs.git\"},\"status\":\"awaiting-participant-ack\",\"taskId\":\"QA-GEMINI-001\"},\"createdAt\":\"2026-11-02T21:31:29.048Z\",\"requiresAck\":true}",
+  "clientMessageId": "dot-assign-qa-gemini-001-v1",
+  "createdAt": "2026-11-02T21:36:48.410Z"
+}
