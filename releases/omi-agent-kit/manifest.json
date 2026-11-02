@@ -1,0 +1,428 @@
+{
+  "protocol": "omi-agent-bundle/1",
+  "source": {
+    "commit": "112f946d9e4f4301c58e1081612ab28db945f698",
+    "dirty": false,
+    "commitTime": "2026-11-02T22:17:24.000Z",
+    "runtimeFingerprint": "e6e7443ff462eab5887c9790345e9940f74e74a71d14ca5b8d11d0bf88ad86ce"
+  },
+  "readiness": "virtual-simulation-passed",
+  "requirements": {
+    "agentRuntime": "See node/README.md; Node 24 recommended",
+    "fullForumRuntime": "Node >=24",
+    "tools": [
+      "Bash",
+      "Git"
+    ],
+    "buildOnly": [
+      "Python 3"
+    ]
+  },
+  "simulation": {
+    "status": "passed",
+    "simulatedProvider": true,
+    "reportSha256": "5681049393e7f59d8ff493065ecce421935e16c6c49d8a05d5b6245c76b4460f",
+    "sourceFingerprint": "e6e7443ff462eab5887c9790345e9940f74e74a71d14ca5b8d11d0bf88ad86ce",
+    "checks": 13,
+    "seats": 5
+  },
+  "connectionStatus": "No remote AI connection, license activation or public HTTPS deployment is asserted by this bundle.",
+  "files": [
+    {
+      "path": "AI-HANDOFF.md",
+      "bytes": 3981,
+      "sha256": "fd7c60b3eaf9183315efaa58db8292ab40c73aad448775ca481d23879d37b01e",
+      "mode": "0644"
+    },
+    {
+      "path": "docs/accessibility.md",
+      "bytes": 11020,
+      "sha256": "8f7fa2c57dbebe67ae6a327ae055f1945b9d77f570d698a5c453c273b552bffb",
+      "mode": "0644"
+    },
+    {
+      "path": "docs/architecture.md",
+      "bytes": 13721,
+      "sha256": "d6ed34a5a4286b0ed678ba9c09709385168120939f42fb184440acee2489cee8",
+      "mode": "0644"
+    },
+    {
+      "path": "docs/collaboration.md",
+      "bytes": 4871,
+      "sha256": "3f85788ac3a56577e70f94f986600b01aec185e8e045182bddd2d58dd396d0d3",
+      "mode": "0644"
+    },
+    {
+      "path": "docs/CORPORATE-MAIL-FLOW.md",
+      "bytes": 13061,
+      "sha256": "3e91b9dd743d5b4b91bbaea9e29fdfeade29c3729cab06f525c376beaef294f3",
+      "mode": "0644"
+    },
+    {
+      "path": "docs/forum-api.md",
+      "bytes": 6464,
+      "sha256": "f6feca6fc4ed3b4243e3cc9488c6906f297a7114ce13a597f5b55285fbf84a30",
+      "mode": "0644"
+    },
+    {
+      "path": "docs/RELAY-REVIEW-CORRECTIONS.md",
+      "bytes": 3452,
+      "sha256": "800f5627685a37621565f79f9f3ba22ddea800ae29e5e51d684e4dbf282a4ddc",
+      "mode": "0644"
+    },
+    {
+      "path": "evidence/simulation-report.json",
+      "bytes": 67230,
+      "sha256": "5681049393e7f59d8ff493065ecce421935e16c6c49d8a05d5b6245c76b4460f",
+      "mode": "0644"
+    },
+    {
+      "path": "examples/station.json",
+      "bytes": 471,
+      "sha256": "f1b1dc0dd20f3757912fca1d219440efadad09a950d5e6c76bd3e04958e1c2c2",
+      "mode": "0644"
+    },
+    {
+      "path": "node/diagnose.mjs",
+      "bytes": 8027,
+      "sha256": "67c391a9db5ecb2caace237836336accb0bbcd136b40c8fcbd9d4fe925172534",
+      "mode": "0644"
+    },
+    {
+      "path": "node/diagnose.sh",
+      "bytes": 281,
+      "sha256": "bcb369e7747db0147a54d48f5ca39e98c0a9c268e49ef44d5762ed11fa1511c8",
+      "mode": "0755"
+    },
+    {
+      "path": "node/discover.mjs",
+      "bytes": 28559,
+      "sha256": "374b65cc97b8193a2537ffcc441a46ba8c3d3961d20d8253895229f5ddc76c82",
+      "mode": "0644"
+    },
+    {
+      "path": "node/discover.test.mjs",
+      "bytes": 12354,
+      "sha256": "0aadb1b6fad50db7624b0c9b1e61a44619c8a71c589c1f88f0b29d529d3bbf29",
+      "mode": "0644"
+    },
+    {
+      "path": "node/install.sh",
+      "bytes": 346,
+      "sha256": "a38ea485fe9a588fd49b4101a0166aa83f47bd0251fa0791f98935ba4ca9c21f",
+      "mode": "0755"
+    },
+    {
+      "path": "node/nodectl.sh",
+      "bytes": 277,
+      "sha256": "ec0dc59564a800ced3d5b4cfbe3468b8a8487be597879384357dc5d97f1dad0c",
+      "mode": "0755"
+    },
+    {
+      "path": "node/README.md",
+      "bytes": 5443,
+      "sha256": "728e5bcc075b6e524ffd259a97921767732a9c319180dfd6a02bd0ee29231a1c",
+      "mode": "0644"
+    },
+    {
+      "path": "OMI_ALL_AI_HANDOFF.txt",
+      "bytes": 607590,
+      "sha256": "816962a171f2f99570cb8fdcecb431f99dc413f1692c5abf398b8991f926481b",
+      "mode": "0644"
+    },
+    {
+      "path": "package.json",
+      "bytes": 278,
+      "sha256": "12d48b5ae27c80938db81cbb0bf20d69b94d9ba3ca18903a83ae39a8c17ea79c",
+      "mode": "0644"
+    },
+    {
+      "path": "README-FIRST.md",
+      "bytes": 1963,
+      "sha256": "4205d51a39868842b2c98d585d8e02f9e611957174a0e5cd8e3659a19fd2ca66",
+      "mode": "0644"
+    },
+    {
+      "path": "relay/ADVISORIES.md",
+      "bytes": 7223,
+      "sha256": "f8837c9cd71cbe8dfeb4ff072158ff1089913520d4ebe2aade410b055efe8eda",
+      "mode": "0644"
+    },
+    {
+      "path": "relay/advisory.mjs",
+      "bytes": 15073,
+      "sha256": "203f9e837ca6467deea1cc7f65cb871a0b37b8e7a82070d030c8f340b77831d5",
+      "mode": "0644"
+    },
+    {
+      "path": "relay/advisory.test.mjs",
+      "bytes": 12926,
+      "sha256": "007753b468c00d16c5227b0981ec9e9dfb4454c9b87cc48562ba2a4bb76e963c",
+      "mode": "0644"
+    },
+    {
+      "path": "relay/GIT-MAILBOX.md",
+      "bytes": 9873,
+      "sha256": "ea61c03365f86c2e9137406d2a4d69dbce47353b4a141ffb450d6e459f764c65",
+      "mode": "0644"
+    },
+    {
+      "path": "relay/git-worker.mjs",
+      "bytes": 21421,
+      "sha256": "4d19a598dde77cb23e26f367aa03c9872151d7b913edbe8f2342cac6b16f98ab",
+      "mode": "0644"
+    },
+    {
+      "path": "relay/git-worker.test.mjs",
+      "bytes": 14283,
+      "sha256": "d21e9982b94c35a647ad2d84329e8cc387211d4946abfbe9d0756ae78698e6cc",
+      "mode": "0644"
+    },
+    {
+      "path": "relay/MAILROOM.md",
+      "bytes": 5383,
+      "sha256": "7615f5902507bda9b15dbab104074d325616dc861ea6291b8babe811ff488163",
+      "mode": "0644"
+    },
+    {
+      "path": "relay/mailroom.mjs",
+      "bytes": 13065,
+      "sha256": "49def969291dad509075270b7d56ff0a3d04cdd7a2141577981c6e6ae929b883",
+      "mode": "0644"
+    },
+    {
+      "path": "relay/mailroom.test.mjs",
+      "bytes": 12450,
+      "sha256": "c0934b06cacf17f80f6045a1ec6ac5638ba15533afbc413f917f5b9bf2987f57",
+      "mode": "0644"
+    },
+    {
+      "path": "relay/MODEL-ADAPTER.md",
+      "bytes": 8733,
+      "sha256": "ee0eaa3188cdb031aed010515bce1d65e21c44b0695944c2e8cc711d494196ee",
+      "mode": "0644"
+    },
+    {
+      "path": "relay/model-adapter.mjs",
+      "bytes": 25448,
+      "sha256": "48bb06a31f4017815b14104b0073e04e1a9292959be70a12c29aaa9652264f15",
+      "mode": "0644"
+    },
+    {
+      "path": "relay/model-adapter.test.mjs",
+      "bytes": 17334,
+      "sha256": "2728759956d14905bd8e62198ea4764b84334be77813d866ee421a964f2efdc8",
+      "mode": "0644"
+    },
+    {
+      "path": "relay/README.md",
+      "bytes": 9647,
+      "sha256": "025c7990bb9603519018416815cdebf1cf42872f14cb2ecd34d685ac7fea7348",
+      "mode": "0644"
+    },
+    {
+      "path": "relay/STATION.md",
+      "bytes": 10073,
+      "sha256": "3788cc1bdf2edfe93c5643caa9d4d8d73b625785dde10cc90a8b3e199bc2f080",
+      "mode": "0644"
+    },
+    {
+      "path": "relay/station.mjs",
+      "bytes": 14400,
+      "sha256": "84b5223f407d0b4c9e300124bf0ac827e262db72d88ef08bac921417b4c09103",
+      "mode": "0644"
+    },
+    {
+      "path": "relay/station.test.mjs",
+      "bytes": 16877,
+      "sha256": "410da1df3a2c8181dc4bb686454309c1eb3466e4cf17365d2a96cc9ef327ce46",
+      "mode": "0644"
+    },
+    {
+      "path": "relay/worker.mjs",
+      "bytes": 22267,
+      "sha256": "5275cadd4bcc6add9e9eb40ae975d4086f848849e3b809092c25317a708c9e90",
+      "mode": "0644"
+    },
+    {
+      "path": "relay/worker.test.mjs",
+      "bytes": 17555,
+      "sha256": "ec18e5f386644bb9bfbeae2204b75386c4d40f55af7da9b185d4bcb6b8601f8f",
+      "mode": "0644"
+    },
+    {
+      "path": "scripts/virtual-team-sim.mjs",
+      "bytes": 25610,
+      "sha256": "533e69563b6c2cfea77e7c4306c4ca57bee87dfa9f5a9429638a761cd3dc7996",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/CLAUDE.md",
+      "bytes": 2828,
+      "sha256": "a996f9eeca4dc1ecd238574eb92a5597b9e36909760cf52b2d64beedd4babf2c",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/omi-client/capsules/schema.json",
+      "bytes": 4302,
+      "sha256": "7fa76da76ef46222f3f72af5c36c72059a2dfa4aa9b67a288631ba8ff9760467",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/omi-client/cartridges/eagles-nest/index.html",
+      "bytes": 23067,
+      "sha256": "0b4613315ab6bdeec22f9ed34d140ac5ef2cf0975ca5a68d20ba1e0499b290c3",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/omi-client/cartridges/eagles-nest/README.md",
+      "bytes": 4652,
+      "sha256": "2a6c0e52492bc2fae87ccb373c5dfafb70f17fb9c47885822f3e6de76eedb890",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/omi-client/manifest.json",
+      "bytes": 840,
+      "sha256": "0220a19d8cb0681d4a93ef432898b3d3d680d164e7c02aebb69a61c74c392632",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/omi-client/mesh/talky-spider.json",
+      "bytes": 1814,
+      "sha256": "26bedc9f1eca13051c66aaa5f03f1170b0a8f23985ba5171fab0bd12469f37a6",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/omi-client/registry/apps.json",
+      "bytes": 4084,
+      "sha256": "439e635760188c5597cf2f3c5d0d26edd39f455590f5ece231b24cc051119c08",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/omi-client/shell/shell.json",
+      "bytes": 1282,
+      "sha256": "d77b9a79c293601aac0f43f1c67dee9a626fc63b174317f9cc10188d1d1167da",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/README.md",
+      "bytes": 9352,
+      "sha256": "2f06ca8d501f8a6cd1ff95f0fde9b4105b79113525464ee43677f486769b0c2d",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/scripts/sign-cartridges.mjs",
+      "bytes": 2045,
+      "sha256": "d7565f4cd5333111d6d5e4713ea882a3610f42faf0cab9f131d09432dda77f2a",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/server/credential-paths.test.ts",
+      "bytes": 1817,
+      "sha256": "8a1f937fcfd1dec9770e91b4236f6dc5004080e8ae952da7070a0893ca4dabf0",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/server/forum-store.test.ts",
+      "bytes": 20297,
+      "sha256": "710e7156fd67e22ef9a904e573a938c4c7182a3d164b3869d3b61fe3cc4721d3",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/server/forum-store.ts",
+      "bytes": 15799,
+      "sha256": "922c96dc6ff3e330bb8faf7d8f02f3b6c3504a7daf75a1957b3a7c801085d9c3",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/server/http.test.ts",
+      "bytes": 16533,
+      "sha256": "e08bbb0a4cc94396b3b0e8c5d51d029084ee35edfe35879439cb4a3f50917f7b",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/server/http.ts",
+      "bytes": 12692,
+      "sha256": "3651b99bd286064d6dd1e0db174d0af146f3d14dc39787c697a99ae568b009be",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/server/index.ts",
+      "bytes": 4092,
+      "sha256": "f8b5c8d18f07ce4cf6ca9bbfc3f9955c77b807ed093c6132166aa910be20956f",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/server/participant-cli.ts",
+      "bytes": 4553,
+      "sha256": "d95a182fb28ab3c53c46df56088bf24ed587bada420414184ffb35c87b04a866",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/src/core/capsule.test.ts",
+      "bytes": 5635,
+      "sha256": "b6d1a2b190385924d6eecea16ee99d760c8c431155304cff201f37f9d57285ab",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/src/core/capsule.ts",
+      "bytes": 10102,
+      "sha256": "b7104cd53ff0053256ac27dd73c2a1b18e86f394a535ccf429d58c8beeccf811",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/src/core/cartridges.test.ts",
+      "bytes": 1803,
+      "sha256": "ed38a5763db6636ad83e8a6115c753ea0f96d29fdb3202838c7ec11284384fb7",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/src/core/cartridges.ts",
+      "bytes": 3927,
+      "sha256": "d50cff0ca19d758d4416199759bd9864c3f8dde5fbcf6e4e655b8e20e52624f0",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/src/core/codex.test.ts",
+      "bytes": 8705,
+      "sha256": "dd39c9e35d512f14dcb7b84be0c8f4ef21b30398b04d87743802594b03427d4a",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/src/core/codex.ts",
+      "bytes": 12375,
+      "sha256": "a3e954fd45e1fe45d9586471a3387a5a207bcfb31b50580e4efca9a6d0e322f5",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/src/core/governance.test.ts",
+      "bytes": 6546,
+      "sha256": "7589a19a54944a01d0fa3e1bab84ed76d449971d9a71d8f851a32b0cb1051ae6",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/src/core/governance.ts",
+      "bytes": 11246,
+      "sha256": "7eade4e10d917cdbcab1ca3826802e5f452d45df90d8d82d0a425cbe00e167f1",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/src/core/sharing.test.ts",
+      "bytes": 5710,
+      "sha256": "03142c131cd0573fdba9f85c9a68958f901506c819403facba8f6377ca8b1a48",
+      "mode": "0644"
+    },
+    {
+      "path": "source-review/src/core/sharing.ts",
+      "bytes": 3875,
+      "sha256": "c39edcdc990c9b21355279c210483af6bd096606a5652bfe93f5ad28e9f3df13",
+      "mode": "0644"
+    },
+    {
+      "path": "VERIFY.mjs",
+      "bytes": 1375,
+      "sha256": "dbb45b8b61505f81a466d80d8731b78c1cfe32e424aa62181a6f5d058cb5dd7c",
+      "mode": "0644"
+    }
+  ]
+}

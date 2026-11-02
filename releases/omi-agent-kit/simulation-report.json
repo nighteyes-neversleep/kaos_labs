@@ -1,0 +1,2947 @@
+{
+  "protocol": "omi-virtual-team-sim/1",
+  "status": "passed",
+  "startedAt": "2026-11-02T22:17:33.171Z",
+  "simulatedProvider": true,
+  "liveModelsTested": false,
+  "productionMailboxUsed": false,
+  "scope": "Five synthetic seats using production Git transport, station, advisory, mailroom, and model-adapter code; local bare Git and a deterministic loopback HTTP provider.",
+  "limitations": [
+    "No live Claude, DeepSeek, Gemini, Muse, or Codex inference was tested.",
+    "No remote Station Node or Route66 installation was verified.",
+    "Per-seat sorting is routing for cooperating agents, not secrecy from shared repository readers.",
+    "Crash injection uses the adapter durable-result fault hook; no operating-system process was killed."
+  ],
+  "checks": [
+    {
+      "name": "five independent private seats initialize over real local Git",
+      "status": "passed"
+    },
+    {
+      "name": "Dot queues four addressed assignments and one explicit broadcast",
+      "status": "passed"
+    },
+    {
+      "name": "mailrooms isolate directed work, deliver broadcast once, and quarantine malformed advisory",
+      "status": "passed",
+      "details": {
+        "sharedRawTransportCopiesPerSeat": 8,
+        "directedCopiesPerSeat": 1,
+        "routingIsNotAnAccessControlBoundary": true
+      }
+    },
+    {
+      "name": "actual HTTP provider calls carry only each assigned task and selected source",
+      "status": "passed"
+    },
+    {
+      "name": "restart recovers durable Claude result without repeating provider inference",
+      "status": "passed"
+    },
+    {
+      "name": "lost adapter receipt reuses the stable pending result without duplicate outbox work",
+      "status": "passed"
+    },
+    {
+      "name": "concurrent Git writers preserve three successful replies while Gemini remains pending",
+      "status": "passed",
+      "details": {
+        "actualConcurrentWriterLimit": 2,
+        "successfulRepliesBeforeFailedSeatRecovery": 3
+      }
+    },
+    {
+      "name": "timed out provider task retries with bounded attempts and returns its fourth result",
+      "status": "passed"
+    },
+    {
+      "name": "Dot receives four correlated draft results with truthful unverified status",
+      "status": "passed"
+    },
+    {
+      "name": "lost transport sent receipt replays the same identity without a new Git commit",
+      "status": "passed"
+    },
+    {
+      "name": "cursor replay and completed adapter restarts create no extra provider calls or messages",
+      "status": "passed"
+    },
+    {
+      "name": "one unavailable Git seat backs off while four other seats keep polling",
+      "status": "passed"
+    },
+    {
+      "name": "public source fingerprint stayed unchanged throughout the simulation",
+      "status": "passed"
+    }
+  ],
+  "timeline": [
+    {
+      "sequence": 1,
+      "event": "station_transport",
+      "participantId": "dot",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 2,
+      "event": "station_transport",
+      "participantId": "deepseek",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 3,
+      "event": "station_mailroom",
+      "participantId": "dot",
+      "scanned": 0,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 0,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 4,
+      "event": "station_seat",
+      "participantId": "dot",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 0,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 0,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 5,
+      "event": "station_mailroom",
+      "participantId": "deepseek",
+      "scanned": 0,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 0,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 6,
+      "event": "station_seat",
+      "participantId": "deepseek",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 0,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 0,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 7,
+      "event": "station_transport",
+      "participantId": "claude",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 8,
+      "event": "station_transport",
+      "participantId": "gemini",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 9,
+      "event": "station_mailroom",
+      "participantId": "claude",
+      "scanned": 0,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 0,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 10,
+      "event": "station_seat",
+      "participantId": "claude",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 0,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 0,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 11,
+      "event": "station_mailroom",
+      "participantId": "gemini",
+      "scanned": 0,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 0,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 12,
+      "event": "station_seat",
+      "participantId": "gemini",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 0,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 0,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 13,
+      "event": "station_transport",
+      "participantId": "muse",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 14,
+      "event": "station_mailroom",
+      "participantId": "muse",
+      "scanned": 0,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 0,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 15,
+      "event": "station_seat",
+      "participantId": "muse",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 0,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 0,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 16,
+      "event": "station_cycle",
+      "enabled": 5,
+      "completed": 5,
+      "failed": 0,
+      "backoff": 0,
+      "disabled": 0,
+      "stopped": 0
+    },
+    {
+      "sequence": 17,
+      "event": "station_transport",
+      "participantId": "deepseek",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 18,
+      "event": "station_mailroom",
+      "participantId": "deepseek",
+      "scanned": 0,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 0,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 19,
+      "event": "station_seat",
+      "participantId": "deepseek",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 0,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 0,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 20,
+      "event": "station_transport",
+      "participantId": "claude",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 21,
+      "event": "station_mailroom",
+      "participantId": "claude",
+      "scanned": 0,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 0,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 22,
+      "event": "station_seat",
+      "participantId": "claude",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 0,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 0,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 23,
+      "event": "station_transport",
+      "participantId": "gemini",
+      "status": "cycle_complete",
+      "received": 1,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 24,
+      "event": "station_mailroom",
+      "participantId": "gemini",
+      "scanned": 1,
+      "delivered": 1,
+      "addressed": 1,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 0,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 25,
+      "event": "station_seat",
+      "participantId": "gemini",
+      "status": "complete",
+      "received": 1,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 1,
+        "delivered": 1,
+        "addressed": 1,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 0,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 26,
+      "event": "station_transport",
+      "participantId": "muse",
+      "status": "cycle_complete",
+      "received": 2,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 27,
+      "event": "station_mailroom",
+      "participantId": "muse",
+      "scanned": 2,
+      "delivered": 1,
+      "addressed": 1,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 1,
+      "alreadySorted": 0,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 28,
+      "event": "station_seat",
+      "participantId": "muse",
+      "status": "complete",
+      "received": 2,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 2,
+        "delivered": 1,
+        "addressed": 1,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 1,
+        "alreadySorted": 0,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 29,
+      "event": "station_transport",
+      "participantId": "dot",
+      "status": "cycle_complete",
+      "received": 8,
+      "sent": 8,
+      "rejected": 0
+    },
+    {
+      "sequence": 30,
+      "event": "station_mailroom",
+      "participantId": "dot",
+      "scanned": 8,
+      "delivered": 4,
+      "addressed": 1,
+      "broadcast": 1,
+      "unaddressed": 1,
+      "quarantined": 1,
+      "notForMe": 4,
+      "alreadySorted": 0,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 31,
+      "event": "station_seat",
+      "participantId": "dot",
+      "status": "complete",
+      "received": 8,
+      "sent": 8,
+      "rejected": 0,
+      "mail": {
+        "scanned": 8,
+        "delivered": 4,
+        "addressed": 1,
+        "broadcast": 1,
+        "unaddressed": 1,
+        "quarantined": 1,
+        "notForMe": 4,
+        "alreadySorted": 0,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 32,
+      "event": "station_cycle",
+      "enabled": 5,
+      "completed": 5,
+      "failed": 0,
+      "backoff": 0,
+      "disabled": 0,
+      "stopped": 0
+    },
+    {
+      "sequence": 33,
+      "event": "station_transport",
+      "participantId": "dot",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 34,
+      "event": "station_mailroom",
+      "participantId": "dot",
+      "scanned": 8,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 8,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 35,
+      "event": "station_seat",
+      "participantId": "dot",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 8,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 8,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 36,
+      "event": "station_transport",
+      "participantId": "deepseek",
+      "status": "cycle_complete",
+      "received": 8,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 37,
+      "event": "station_mailroom",
+      "participantId": "deepseek",
+      "scanned": 8,
+      "delivered": 4,
+      "addressed": 1,
+      "broadcast": 1,
+      "unaddressed": 1,
+      "quarantined": 1,
+      "notForMe": 4,
+      "alreadySorted": 0,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 38,
+      "event": "station_seat",
+      "participantId": "deepseek",
+      "status": "complete",
+      "received": 8,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 8,
+        "delivered": 4,
+        "addressed": 1,
+        "broadcast": 1,
+        "unaddressed": 1,
+        "quarantined": 1,
+        "notForMe": 4,
+        "alreadySorted": 0,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 39,
+      "event": "station_transport",
+      "participantId": "claude",
+      "status": "cycle_complete",
+      "received": 8,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 40,
+      "event": "station_transport",
+      "participantId": "gemini",
+      "status": "cycle_complete",
+      "received": 7,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 41,
+      "event": "station_mailroom",
+      "participantId": "claude",
+      "scanned": 8,
+      "delivered": 4,
+      "addressed": 1,
+      "broadcast": 1,
+      "unaddressed": 1,
+      "quarantined": 1,
+      "notForMe": 4,
+      "alreadySorted": 0,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 42,
+      "event": "station_seat",
+      "participantId": "claude",
+      "status": "complete",
+      "received": 8,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 8,
+        "delivered": 4,
+        "addressed": 1,
+        "broadcast": 1,
+        "unaddressed": 1,
+        "quarantined": 1,
+        "notForMe": 4,
+        "alreadySorted": 0,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 43,
+      "event": "station_mailroom",
+      "participantId": "gemini",
+      "scanned": 8,
+      "delivered": 3,
+      "addressed": 0,
+      "broadcast": 1,
+      "unaddressed": 1,
+      "quarantined": 1,
+      "notForMe": 4,
+      "alreadySorted": 1,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 44,
+      "event": "station_seat",
+      "participantId": "gemini",
+      "status": "complete",
+      "received": 7,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 8,
+        "delivered": 3,
+        "addressed": 0,
+        "broadcast": 1,
+        "unaddressed": 1,
+        "quarantined": 1,
+        "notForMe": 4,
+        "alreadySorted": 1,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 45,
+      "event": "station_transport",
+      "participantId": "muse",
+      "status": "cycle_complete",
+      "received": 6,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 46,
+      "event": "station_mailroom",
+      "participantId": "muse",
+      "scanned": 8,
+      "delivered": 3,
+      "addressed": 0,
+      "broadcast": 1,
+      "unaddressed": 1,
+      "quarantined": 1,
+      "notForMe": 3,
+      "alreadySorted": 2,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 47,
+      "event": "station_seat",
+      "participantId": "muse",
+      "status": "complete",
+      "received": 6,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 8,
+        "delivered": 3,
+        "addressed": 0,
+        "broadcast": 1,
+        "unaddressed": 1,
+        "quarantined": 1,
+        "notForMe": 3,
+        "alreadySorted": 2,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 48,
+      "event": "station_cycle",
+      "enabled": 5,
+      "completed": 5,
+      "failed": 0,
+      "backoff": 0,
+      "disabled": 0,
+      "stopped": 0
+    },
+    {
+      "sequence": 49,
+      "event": "fixture_provider_request",
+      "participantId": "deepseek",
+      "attempt": 1
+    },
+    {
+      "sequence": 50,
+      "event": "fixture_provider_request",
+      "participantId": "claude",
+      "attempt": 1
+    },
+    {
+      "sequence": 51,
+      "event": "fixture_provider_request",
+      "participantId": "muse",
+      "attempt": 1
+    },
+    {
+      "sequence": 52,
+      "event": "fixture_provider_request",
+      "participantId": "gemini",
+      "attempt": 1
+    },
+    {
+      "sequence": 53,
+      "event": "model_task_failed",
+      "participantId": "claude",
+      "inputId": "e1e363dc-7384-4a91-8984-e5a7683fd3c5",
+      "code": "LOCAL_ADAPTER_ERROR"
+    },
+    {
+      "sequence": 54,
+      "event": "model_adapter_cycle",
+      "participantId": "claude",
+      "scanned": 1,
+      "eligible": 1,
+      "providerCalls": 1,
+      "queued": 0,
+      "skipped": 0,
+      "blocked": 0,
+      "failed": 1,
+      "deferred": 0
+    },
+    {
+      "sequence": 55,
+      "event": "model_result_queued",
+      "participantId": "deepseek",
+      "inputId": "78f7daab-6505-4f78-a8ed-44d054937df4",
+      "replyId": "result-30bdb5c7bb068eed2382d29f5a6d37205cbabda99472db2900d1181029aa19ec"
+    },
+    {
+      "sequence": 56,
+      "event": "model_adapter_cycle",
+      "participantId": "deepseek",
+      "scanned": 1,
+      "eligible": 1,
+      "providerCalls": 1,
+      "queued": 1,
+      "skipped": 0,
+      "blocked": 0,
+      "failed": 0,
+      "deferred": 0
+    },
+    {
+      "sequence": 57,
+      "event": "model_result_queued",
+      "participantId": "muse",
+      "inputId": "f9ae63bd-3c9a-4c8d-a623-bfa0a829af9b",
+      "replyId": "result-34871c568af4423312d7f4ea3f52111f323acf42999593ebc388a3e015843ac7"
+    },
+    {
+      "sequence": 58,
+      "event": "model_adapter_cycle",
+      "participantId": "muse",
+      "scanned": 1,
+      "eligible": 1,
+      "providerCalls": 1,
+      "queued": 1,
+      "skipped": 0,
+      "blocked": 0,
+      "failed": 0,
+      "deferred": 0
+    },
+    {
+      "sequence": 59,
+      "event": "model_task_failed",
+      "participantId": "gemini",
+      "inputId": "efc09310-db4d-4b05-b232-7a3991bffe3a",
+      "code": "PROVIDER_TIMEOUT"
+    },
+    {
+      "sequence": 60,
+      "event": "model_adapter_cycle",
+      "participantId": "gemini",
+      "scanned": 1,
+      "eligible": 1,
+      "providerCalls": 1,
+      "queued": 0,
+      "skipped": 0,
+      "blocked": 0,
+      "failed": 1,
+      "deferred": 0
+    },
+    {
+      "sequence": 61,
+      "event": "model_result_queued",
+      "participantId": "claude",
+      "inputId": "e1e363dc-7384-4a91-8984-e5a7683fd3c5",
+      "replyId": "result-d32b7d7477a06c20422814c66a3a4b1901aa767416ec24137cb3e2b2b1fd6870"
+    },
+    {
+      "sequence": 62,
+      "event": "model_adapter_cycle",
+      "participantId": "claude",
+      "scanned": 1,
+      "eligible": 1,
+      "providerCalls": 0,
+      "queued": 1,
+      "skipped": 0,
+      "blocked": 0,
+      "failed": 0,
+      "deferred": 0
+    },
+    {
+      "sequence": 63,
+      "event": "model_result_queued",
+      "participantId": "claude",
+      "inputId": "e1e363dc-7384-4a91-8984-e5a7683fd3c5",
+      "replyId": "result-d32b7d7477a06c20422814c66a3a4b1901aa767416ec24137cb3e2b2b1fd6870"
+    },
+    {
+      "sequence": 64,
+      "event": "model_adapter_cycle",
+      "participantId": "claude",
+      "scanned": 1,
+      "eligible": 1,
+      "providerCalls": 0,
+      "queued": 1,
+      "skipped": 0,
+      "blocked": 0,
+      "failed": 0,
+      "deferred": 0
+    },
+    {
+      "sequence": 65,
+      "event": "station_transport",
+      "participantId": "dot",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 66,
+      "event": "station_mailroom",
+      "participantId": "dot",
+      "scanned": 8,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 8,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 67,
+      "event": "station_seat",
+      "participantId": "dot",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 8,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 8,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 68,
+      "event": "station_transport",
+      "participantId": "deepseek",
+      "status": "cycle_complete",
+      "received": 1,
+      "sent": 1,
+      "rejected": 0
+    },
+    {
+      "sequence": 69,
+      "event": "station_mailroom",
+      "participantId": "deepseek",
+      "scanned": 9,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 1,
+      "alreadySorted": 8,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 70,
+      "event": "station_seat",
+      "participantId": "deepseek",
+      "status": "complete",
+      "received": 1,
+      "sent": 1,
+      "rejected": 0,
+      "mail": {
+        "scanned": 9,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 1,
+        "alreadySorted": 8,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 71,
+      "event": "station_transport",
+      "participantId": "gemini",
+      "status": "cycle_complete",
+      "received": 1,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 72,
+      "event": "station_mailroom",
+      "participantId": "gemini",
+      "scanned": 9,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 1,
+      "alreadySorted": 8,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 73,
+      "event": "station_seat",
+      "participantId": "gemini",
+      "status": "complete",
+      "received": 1,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 9,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 1,
+        "alreadySorted": 8,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 74,
+      "event": "station_transport",
+      "participantId": "claude",
+      "status": "cycle_complete",
+      "received": 2,
+      "sent": 1,
+      "rejected": 0
+    },
+    {
+      "sequence": 75,
+      "event": "station_mailroom",
+      "participantId": "claude",
+      "scanned": 10,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 2,
+      "alreadySorted": 8,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 76,
+      "event": "station_seat",
+      "participantId": "claude",
+      "status": "complete",
+      "received": 2,
+      "sent": 1,
+      "rejected": 0,
+      "mail": {
+        "scanned": 10,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 2,
+        "alreadySorted": 8,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 77,
+      "event": "station_transport",
+      "participantId": "muse",
+      "status": "cycle_complete",
+      "received": 3,
+      "sent": 1,
+      "rejected": 0
+    },
+    {
+      "sequence": 78,
+      "event": "station_mailroom",
+      "participantId": "muse",
+      "scanned": 11,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 3,
+      "alreadySorted": 8,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 79,
+      "event": "station_seat",
+      "participantId": "muse",
+      "status": "complete",
+      "received": 3,
+      "sent": 1,
+      "rejected": 0,
+      "mail": {
+        "scanned": 11,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 3,
+        "alreadySorted": 8,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 80,
+      "event": "station_cycle",
+      "enabled": 5,
+      "completed": 5,
+      "failed": 0,
+      "backoff": 0,
+      "disabled": 0,
+      "stopped": 0
+    },
+    {
+      "sequence": 81,
+      "event": "station_transport",
+      "participantId": "deepseek",
+      "status": "cycle_complete",
+      "received": 2,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 82,
+      "event": "station_transport",
+      "participantId": "dot",
+      "status": "cycle_complete",
+      "received": 3,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 83,
+      "event": "station_mailroom",
+      "participantId": "deepseek",
+      "scanned": 11,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 2,
+      "alreadySorted": 9,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 84,
+      "event": "station_seat",
+      "participantId": "deepseek",
+      "status": "complete",
+      "received": 2,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 11,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 2,
+        "alreadySorted": 9,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 85,
+      "event": "station_mailroom",
+      "participantId": "dot",
+      "scanned": 11,
+      "delivered": 3,
+      "addressed": 3,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 8,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 86,
+      "event": "station_seat",
+      "participantId": "dot",
+      "status": "complete",
+      "received": 3,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 11,
+        "delivered": 3,
+        "addressed": 3,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 8,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 87,
+      "event": "station_transport",
+      "participantId": "claude",
+      "status": "cycle_complete",
+      "received": 1,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 88,
+      "event": "station_transport",
+      "participantId": "gemini",
+      "status": "cycle_complete",
+      "received": 2,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 89,
+      "event": "station_mailroom",
+      "participantId": "claude",
+      "scanned": 11,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 1,
+      "alreadySorted": 10,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 90,
+      "event": "station_seat",
+      "participantId": "claude",
+      "status": "complete",
+      "received": 1,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 11,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 1,
+        "alreadySorted": 10,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 91,
+      "event": "station_mailroom",
+      "participantId": "gemini",
+      "scanned": 11,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 2,
+      "alreadySorted": 9,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 92,
+      "event": "station_seat",
+      "participantId": "gemini",
+      "status": "complete",
+      "received": 2,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 11,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 2,
+        "alreadySorted": 9,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 93,
+      "event": "station_transport",
+      "participantId": "muse",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 94,
+      "event": "station_mailroom",
+      "participantId": "muse",
+      "scanned": 11,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 11,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 95,
+      "event": "station_seat",
+      "participantId": "muse",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 11,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 11,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 96,
+      "event": "station_cycle",
+      "enabled": 5,
+      "completed": 5,
+      "failed": 0,
+      "backoff": 0,
+      "disabled": 0,
+      "stopped": 0
+    },
+    {
+      "sequence": 97,
+      "event": "fixture_provider_request",
+      "participantId": "gemini",
+      "attempt": 2
+    },
+    {
+      "sequence": 98,
+      "event": "model_result_queued",
+      "participantId": "gemini",
+      "inputId": "efc09310-db4d-4b05-b232-7a3991bffe3a",
+      "replyId": "result-bff5aa223586c9c5ac5b77fe8f00d3f068c109a0cdb41766ce2595ae011f6738"
+    },
+    {
+      "sequence": 99,
+      "event": "model_adapter_cycle",
+      "participantId": "gemini",
+      "scanned": 1,
+      "eligible": 1,
+      "providerCalls": 1,
+      "queued": 1,
+      "skipped": 0,
+      "blocked": 0,
+      "failed": 0,
+      "deferred": 0
+    },
+    {
+      "sequence": 100,
+      "event": "station_transport",
+      "participantId": "dot",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 101,
+      "event": "station_transport",
+      "participantId": "deepseek",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 102,
+      "event": "station_mailroom",
+      "participantId": "dot",
+      "scanned": 11,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 11,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 103,
+      "event": "station_seat",
+      "participantId": "dot",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 11,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 11,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 104,
+      "event": "station_mailroom",
+      "participantId": "deepseek",
+      "scanned": 11,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 11,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 105,
+      "event": "station_seat",
+      "participantId": "deepseek",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 11,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 11,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 106,
+      "event": "station_transport",
+      "participantId": "claude",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 107,
+      "event": "station_mailroom",
+      "participantId": "claude",
+      "scanned": 11,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 11,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 108,
+      "event": "station_seat",
+      "participantId": "claude",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 11,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 11,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 109,
+      "event": "station_transport",
+      "participantId": "muse",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 110,
+      "event": "station_mailroom",
+      "participantId": "muse",
+      "scanned": 11,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 11,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 111,
+      "event": "station_seat",
+      "participantId": "muse",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 11,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 11,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 112,
+      "event": "station_transport",
+      "participantId": "gemini",
+      "status": "cycle_complete",
+      "received": 1,
+      "sent": 1,
+      "rejected": 0
+    },
+    {
+      "sequence": 113,
+      "event": "station_mailroom",
+      "participantId": "gemini",
+      "scanned": 12,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 1,
+      "alreadySorted": 11,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 114,
+      "event": "station_seat",
+      "participantId": "gemini",
+      "status": "complete",
+      "received": 1,
+      "sent": 1,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 1,
+        "alreadySorted": 11,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 115,
+      "event": "station_cycle",
+      "enabled": 5,
+      "completed": 5,
+      "failed": 0,
+      "backoff": 0,
+      "disabled": 0,
+      "stopped": 0
+    },
+    {
+      "sequence": 116,
+      "event": "station_transport",
+      "participantId": "deepseek",
+      "status": "cycle_complete",
+      "received": 1,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 117,
+      "event": "station_transport",
+      "participantId": "dot",
+      "status": "cycle_complete",
+      "received": 1,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 118,
+      "event": "station_mailroom",
+      "participantId": "deepseek",
+      "scanned": 12,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 1,
+      "alreadySorted": 11,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 119,
+      "event": "station_seat",
+      "participantId": "deepseek",
+      "status": "complete",
+      "received": 1,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 1,
+        "alreadySorted": 11,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 120,
+      "event": "station_mailroom",
+      "participantId": "dot",
+      "scanned": 12,
+      "delivered": 1,
+      "addressed": 1,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 11,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 121,
+      "event": "station_seat",
+      "participantId": "dot",
+      "status": "complete",
+      "received": 1,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 1,
+        "addressed": 1,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 11,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 122,
+      "event": "station_transport",
+      "participantId": "gemini",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 123,
+      "event": "station_transport",
+      "participantId": "claude",
+      "status": "cycle_complete",
+      "received": 1,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 124,
+      "event": "station_mailroom",
+      "participantId": "gemini",
+      "scanned": 12,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 12,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 125,
+      "event": "station_seat",
+      "participantId": "gemini",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 12,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 126,
+      "event": "station_mailroom",
+      "participantId": "claude",
+      "scanned": 12,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 1,
+      "alreadySorted": 11,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 127,
+      "event": "station_seat",
+      "participantId": "claude",
+      "status": "complete",
+      "received": 1,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 1,
+        "alreadySorted": 11,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 128,
+      "event": "station_transport",
+      "participantId": "muse",
+      "status": "cycle_complete",
+      "received": 1,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 129,
+      "event": "station_mailroom",
+      "participantId": "muse",
+      "scanned": 12,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 1,
+      "alreadySorted": 11,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 130,
+      "event": "station_seat",
+      "participantId": "muse",
+      "status": "complete",
+      "received": 1,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 1,
+        "alreadySorted": 11,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 131,
+      "event": "station_cycle",
+      "enabled": 5,
+      "completed": 5,
+      "failed": 0,
+      "backoff": 0,
+      "disabled": 0,
+      "stopped": 0
+    },
+    {
+      "sequence": 132,
+      "event": "station_transport",
+      "participantId": "dot",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 133,
+      "event": "station_transport",
+      "participantId": "deepseek",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 134,
+      "event": "station_mailroom",
+      "participantId": "dot",
+      "scanned": 12,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 12,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 135,
+      "event": "station_seat",
+      "participantId": "dot",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 12,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 136,
+      "event": "station_mailroom",
+      "participantId": "deepseek",
+      "scanned": 12,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 12,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 137,
+      "event": "station_seat",
+      "participantId": "deepseek",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 12,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 138,
+      "event": "station_transport",
+      "participantId": "claude",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 139,
+      "event": "station_transport",
+      "participantId": "gemini",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 140,
+      "event": "station_mailroom",
+      "participantId": "claude",
+      "scanned": 12,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 12,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 141,
+      "event": "station_seat",
+      "participantId": "claude",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 12,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 142,
+      "event": "station_mailroom",
+      "participantId": "gemini",
+      "scanned": 12,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 12,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 143,
+      "event": "station_seat",
+      "participantId": "gemini",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 12,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 144,
+      "event": "station_transport",
+      "participantId": "muse",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 1,
+      "rejected": 0
+    },
+    {
+      "sequence": 145,
+      "event": "station_mailroom",
+      "participantId": "muse",
+      "scanned": 12,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 12,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 146,
+      "event": "station_seat",
+      "participantId": "muse",
+      "status": "complete",
+      "received": 0,
+      "sent": 1,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 12,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 147,
+      "event": "station_cycle",
+      "enabled": 5,
+      "completed": 5,
+      "failed": 0,
+      "backoff": 0,
+      "disabled": 0,
+      "stopped": 0
+    },
+    {
+      "sequence": 148,
+      "event": "station_transport",
+      "participantId": "deepseek",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 149,
+      "event": "station_transport",
+      "participantId": "dot",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 150,
+      "event": "station_mailroom",
+      "participantId": "deepseek",
+      "scanned": 12,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 12,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 151,
+      "event": "station_seat",
+      "participantId": "deepseek",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 12,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 152,
+      "event": "station_mailroom",
+      "participantId": "dot",
+      "scanned": 12,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 12,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 153,
+      "event": "station_seat",
+      "participantId": "dot",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 12,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 154,
+      "event": "station_transport",
+      "participantId": "claude",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 155,
+      "event": "station_transport",
+      "participantId": "gemini",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 156,
+      "event": "station_mailroom",
+      "participantId": "claude",
+      "scanned": 12,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 12,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 157,
+      "event": "station_seat",
+      "participantId": "claude",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 12,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 158,
+      "event": "station_mailroom",
+      "participantId": "gemini",
+      "scanned": 12,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 12,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 159,
+      "event": "station_seat",
+      "participantId": "gemini",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 12,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 160,
+      "event": "station_transport",
+      "participantId": "muse",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 161,
+      "event": "station_mailroom",
+      "participantId": "muse",
+      "scanned": 12,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 12,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 162,
+      "event": "station_seat",
+      "participantId": "muse",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 12,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 163,
+      "event": "station_cycle",
+      "enabled": 5,
+      "completed": 5,
+      "failed": 0,
+      "backoff": 0,
+      "disabled": 0,
+      "stopped": 0
+    },
+    {
+      "sequence": 164,
+      "event": "model_adapter_cycle",
+      "participantId": "deepseek",
+      "scanned": 1,
+      "eligible": 1,
+      "providerCalls": 0,
+      "queued": 0,
+      "skipped": 1,
+      "blocked": 0,
+      "failed": 0,
+      "deferred": 0
+    },
+    {
+      "sequence": 165,
+      "event": "model_adapter_cycle",
+      "participantId": "claude",
+      "scanned": 1,
+      "eligible": 1,
+      "providerCalls": 0,
+      "queued": 0,
+      "skipped": 1,
+      "blocked": 0,
+      "failed": 0,
+      "deferred": 0
+    },
+    {
+      "sequence": 166,
+      "event": "model_adapter_cycle",
+      "participantId": "gemini",
+      "scanned": 1,
+      "eligible": 1,
+      "providerCalls": 0,
+      "queued": 0,
+      "skipped": 1,
+      "blocked": 0,
+      "failed": 0,
+      "deferred": 0
+    },
+    {
+      "sequence": 167,
+      "event": "model_adapter_cycle",
+      "participantId": "muse",
+      "scanned": 1,
+      "eligible": 1,
+      "providerCalls": 0,
+      "queued": 0,
+      "skipped": 1,
+      "blocked": 0,
+      "failed": 0,
+      "deferred": 0
+    },
+    {
+      "sequence": 168,
+      "event": "model_adapter_cycle",
+      "participantId": "dot",
+      "scanned": 5,
+      "eligible": 0,
+      "providerCalls": 0,
+      "queued": 0,
+      "skipped": 5,
+      "blocked": 0,
+      "failed": 0,
+      "deferred": 0
+    },
+    {
+      "sequence": 169,
+      "event": "station_transport",
+      "participantId": "dot",
+      "status": "cycle_complete",
+      "received": 12,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 170,
+      "event": "station_transport",
+      "participantId": "deepseek",
+      "status": "cycle_complete",
+      "received": 12,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 171,
+      "event": "station_mailroom",
+      "participantId": "deepseek",
+      "scanned": 12,
+      "delivered": 4,
+      "addressed": 1,
+      "broadcast": 1,
+      "unaddressed": 1,
+      "quarantined": 1,
+      "notForMe": 8,
+      "alreadySorted": 0,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 172,
+      "event": "station_seat",
+      "participantId": "deepseek",
+      "status": "complete",
+      "received": 12,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 4,
+        "addressed": 1,
+        "broadcast": 1,
+        "unaddressed": 1,
+        "quarantined": 1,
+        "notForMe": 8,
+        "alreadySorted": 0,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 173,
+      "event": "station_mailroom",
+      "participantId": "dot",
+      "scanned": 12,
+      "delivered": 8,
+      "addressed": 5,
+      "broadcast": 1,
+      "unaddressed": 1,
+      "quarantined": 1,
+      "notForMe": 4,
+      "alreadySorted": 0,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 174,
+      "event": "station_seat",
+      "participantId": "dot",
+      "status": "complete",
+      "received": 12,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 8,
+        "addressed": 5,
+        "broadcast": 1,
+        "unaddressed": 1,
+        "quarantined": 1,
+        "notForMe": 4,
+        "alreadySorted": 0,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 175,
+      "event": "station_seat",
+      "participantId": "gemini",
+      "status": "failed",
+      "code": "GIT_COMMAND_FAILED",
+      "retryInMs": 1000
+    },
+    {
+      "sequence": 176,
+      "event": "station_transport",
+      "participantId": "claude",
+      "status": "cycle_complete",
+      "received": 12,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 177,
+      "event": "station_transport",
+      "participantId": "muse",
+      "status": "cycle_complete",
+      "received": 12,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 178,
+      "event": "station_mailroom",
+      "participantId": "claude",
+      "scanned": 12,
+      "delivered": 4,
+      "addressed": 1,
+      "broadcast": 1,
+      "unaddressed": 1,
+      "quarantined": 1,
+      "notForMe": 8,
+      "alreadySorted": 0,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 179,
+      "event": "station_seat",
+      "participantId": "claude",
+      "status": "complete",
+      "received": 12,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 4,
+        "addressed": 1,
+        "broadcast": 1,
+        "unaddressed": 1,
+        "quarantined": 1,
+        "notForMe": 8,
+        "alreadySorted": 0,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 180,
+      "event": "station_mailroom",
+      "participantId": "muse",
+      "scanned": 12,
+      "delivered": 4,
+      "addressed": 1,
+      "broadcast": 1,
+      "unaddressed": 1,
+      "quarantined": 1,
+      "notForMe": 8,
+      "alreadySorted": 0,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 181,
+      "event": "station_seat",
+      "participantId": "muse",
+      "status": "complete",
+      "received": 12,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 4,
+        "addressed": 1,
+        "broadcast": 1,
+        "unaddressed": 1,
+        "quarantined": 1,
+        "notForMe": 8,
+        "alreadySorted": 0,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 182,
+      "event": "station_cycle",
+      "enabled": 5,
+      "completed": 4,
+      "failed": 1,
+      "backoff": 0,
+      "disabled": 0,
+      "stopped": 0
+    },
+    {
+      "sequence": 183,
+      "event": "station_transport",
+      "participantId": "deepseek",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 184,
+      "event": "station_transport",
+      "participantId": "dot",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 185,
+      "event": "station_mailroom",
+      "participantId": "deepseek",
+      "scanned": 12,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 12,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 186,
+      "event": "station_seat",
+      "participantId": "deepseek",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 12,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 187,
+      "event": "station_mailroom",
+      "participantId": "dot",
+      "scanned": 12,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 12,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 188,
+      "event": "station_seat",
+      "participantId": "dot",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 12,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 189,
+      "event": "station_transport",
+      "participantId": "claude",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 190,
+      "event": "station_transport",
+      "participantId": "muse",
+      "status": "cycle_complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0
+    },
+    {
+      "sequence": 191,
+      "event": "station_mailroom",
+      "participantId": "muse",
+      "scanned": 12,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 12,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 192,
+      "event": "station_seat",
+      "participantId": "muse",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 12,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 193,
+      "event": "station_mailroom",
+      "participantId": "claude",
+      "scanned": 12,
+      "delivered": 0,
+      "addressed": 0,
+      "broadcast": 0,
+      "unaddressed": 0,
+      "quarantined": 0,
+      "notForMe": 0,
+      "alreadySorted": 12,
+      "recoveredReceipts": 0
+    },
+    {
+      "sequence": 194,
+      "event": "station_seat",
+      "participantId": "claude",
+      "status": "complete",
+      "received": 0,
+      "sent": 0,
+      "rejected": 0,
+      "mail": {
+        "scanned": 12,
+        "delivered": 0,
+        "addressed": 0,
+        "broadcast": 0,
+        "unaddressed": 0,
+        "quarantined": 0,
+        "notForMe": 0,
+        "alreadySorted": 12,
+        "recoveredReceipts": 0
+      }
+    },
+    {
+      "sequence": 195,
+      "event": "station_cycle",
+      "enabled": 5,
+      "completed": 4,
+      "failed": 0,
+      "backoff": 1,
+      "disabled": 0,
+      "stopped": 0
+    }
+  ],
+  "seats": [
+    {
+      "participantId": "dot",
+      "synthetic": true,
+      "addresses": [],
+      "rawReceived": 12,
+      "sorted": {
+        "inbox": 5,
+        "broadcast": 1,
+        "unaddressed": 1,
+        "quarantine": 1,
+        "receipts": 12
+      },
+      "assignedTasks": 0,
+      "providerRequests": 0,
+      "successfulResults": 0,
+      "receivedResults": 4
+    },
+    {
+      "participantId": "deepseek",
+      "synthetic": true,
+      "addresses": [],
+      "rawReceived": 12,
+      "sorted": {
+        "inbox": 1,
+        "broadcast": 1,
+        "unaddressed": 1,
+        "quarantine": 1,
+        "receipts": 12
+      },
+      "assignedTasks": 1,
+      "providerRequests": 1,
+      "successfulResults": 1,
+      "receivedResults": 0
+    },
+    {
+      "participantId": "claude",
+      "synthetic": true,
+      "addresses": [],
+      "rawReceived": 12,
+      "sorted": {
+        "inbox": 1,
+        "broadcast": 1,
+        "unaddressed": 1,
+        "quarantine": 1,
+        "receipts": 12
+      },
+      "assignedTasks": 1,
+      "providerRequests": 1,
+      "successfulResults": 1,
+      "receivedResults": 0
+    },
+    {
+      "participantId": "gemini",
+      "synthetic": true,
+      "addresses": [],
+      "rawReceived": 12,
+      "sorted": {
+        "inbox": 1,
+        "broadcast": 1,
+        "unaddressed": 1,
+        "quarantine": 1,
+        "receipts": 12
+      },
+      "assignedTasks": 1,
+      "providerRequests": 2,
+      "successfulResults": 1,
+      "receivedResults": 0
+    },
+    {
+      "participantId": "muse",
+      "synthetic": true,
+      "addresses": [
+        "qa-tracker"
+      ],
+      "rawReceived": 12,
+      "sorted": {
+        "inbox": 1,
+        "broadcast": 1,
+        "unaddressed": 1,
+        "quarantine": 1,
+        "receipts": 12
+      },
+      "assignedTasks": 1,
+      "providerRequests": 1,
+      "successfulResults": 1,
+      "receivedResults": 0
+    }
+  ],
+  "provider": {
+    "type": "deterministic-local-http-fixture",
+    "realInference": false,
+    "requests": [
+      {
+        "participantId": "deepseek",
+        "attempt": 1,
+        "taskId": "SIM-DEEPSEEK-001",
+        "providerKind": "ollama"
+      },
+      {
+        "participantId": "claude",
+        "attempt": 1,
+        "taskId": "SIM-CLAUDE-001",
+        "providerKind": "ollama"
+      },
+      {
+        "participantId": "muse",
+        "attempt": 1,
+        "taskId": "SIM-MUSE-001",
+        "providerKind": "openai-compatible"
+      },
+      {
+        "participantId": "gemini",
+        "attempt": 1,
+        "taskId": "SIM-GEMINI-001",
+        "providerKind": "ollama"
+      },
+      {
+        "participantId": "gemini",
+        "attempt": 2,
+        "taskId": "SIM-GEMINI-001",
+        "providerKind": "ollama"
+      }
+    ],
+    "totalRequests": 5,
+    "successfulTaskResults": 4,
+    "injectedTimeouts": 1
+  },
+  "source": {
+    "commit": "112f946d9e4f4301c58e1081612ab28db945f698",
+    "dirty": false,
+    "fingerprint": "e6e7443ff462eab5887c9790345e9940f74e74a71d14ca5b8d11d0bf88ad86ce",
+    "files": [
+      {
+        "path": "node/diagnose.mjs",
+        "sha256": "67c391a9db5ecb2caace237836336accb0bbcd136b40c8fcbd9d4fe925172534",
+        "bytes": 8027
+      },
+      {
+        "path": "node/diagnose.sh",
+        "sha256": "bcb369e7747db0147a54d48f5ca39e98c0a9c268e49ef44d5762ed11fa1511c8",
+        "bytes": 281
+      },
+      {
+        "path": "node/discover.mjs",
+        "sha256": "374b65cc97b8193a2537ffcc441a46ba8c3d3961d20d8253895229f5ddc76c82",
+        "bytes": 28559
+      },
+      {
+        "path": "node/discover.test.mjs",
+        "sha256": "0aadb1b6fad50db7624b0c9b1e61a44619c8a71c589c1f88f0b29d529d3bbf29",
+        "bytes": 12354
+      },
+      {
+        "path": "node/install.sh",
+        "sha256": "a38ea485fe9a588fd49b4101a0166aa83f47bd0251fa0791f98935ba4ca9c21f",
+        "bytes": 346
+      },
+      {
+        "path": "node/nodectl.sh",
+        "sha256": "ec0dc59564a800ced3d5b4cfbe3468b8a8487be597879384357dc5d97f1dad0c",
+        "bytes": 277
+      },
+      {
+        "path": "relay/advisory.mjs",
+        "sha256": "203f9e837ca6467deea1cc7f65cb871a0b37b8e7a82070d030c8f340b77831d5",
+        "bytes": 15073
+      },
+      {
+        "path": "relay/advisory.test.mjs",
+        "sha256": "007753b468c00d16c5227b0981ec9e9dfb4454c9b87cc48562ba2a4bb76e963c",
+        "bytes": 12926
+      },
+      {
+        "path": "relay/git-worker.mjs",
+        "sha256": "4d19a598dde77cb23e26f367aa03c9872151d7b913edbe8f2342cac6b16f98ab",
+        "bytes": 21421
+      },
+      {
+        "path": "relay/git-worker.test.mjs",
+        "sha256": "d21e9982b94c35a647ad2d84329e8cc387211d4946abfbe9d0756ae78698e6cc",
+        "bytes": 14283
+      },
+      {
+        "path": "relay/mailroom.mjs",
+        "sha256": "49def969291dad509075270b7d56ff0a3d04cdd7a2141577981c6e6ae929b883",
+        "bytes": 13065
+      },
+      {
+        "path": "relay/mailroom.test.mjs",
+        "sha256": "c0934b06cacf17f80f6045a1ec6ac5638ba15533afbc413f917f5b9bf2987f57",
+        "bytes": 12450
+      },
+      {
+        "path": "relay/model-adapter.mjs",
+        "sha256": "48bb06a31f4017815b14104b0073e04e1a9292959be70a12c29aaa9652264f15",
+        "bytes": 25448
+      },
+      {
+        "path": "relay/model-adapter.test.mjs",
+        "sha256": "2728759956d14905bd8e62198ea4764b84334be77813d866ee421a964f2efdc8",
+        "bytes": 17334
+      },
+      {
+        "path": "relay/station.mjs",
+        "sha256": "84b5223f407d0b4c9e300124bf0ac827e262db72d88ef08bac921417b4c09103",
+        "bytes": 14400
+      },
+      {
+        "path": "relay/station.test.mjs",
+        "sha256": "410da1df3a2c8181dc4bb686454309c1eb3466e4cf17365d2a96cc9ef327ce46",
+        "bytes": 16877
+      },
+      {
+        "path": "relay/worker.mjs",
+        "sha256": "5275cadd4bcc6add9e9eb40ae975d4086f848849e3b809092c25317a708c9e90",
+        "bytes": 22267
+      },
+      {
+        "path": "relay/worker.test.mjs",
+        "sha256": "ec18e5f386644bb9bfbeae2204b75386c4d40f55af7da9b185d4bcb6b8601f8f",
+        "bytes": 17555
+      },
+      {
+        "path": "scripts/virtual-team-sim.mjs",
+        "sha256": "533e69563b6c2cfea77e7c4306c4ca57bee87dfa9f5a9429638a761cd3dc7996",
+        "bytes": 25610
+      }
+    ]
+  },
+  "finishedAt": "2026-11-02T22:17:38.851Z",
+  "counts": {
+    "passed": 13,
+    "failed": 0
+  }
+}
