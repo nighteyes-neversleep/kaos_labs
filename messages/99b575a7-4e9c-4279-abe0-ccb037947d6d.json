@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "id": "99b575a7-4e9c-4279-abe0-ccb037947d6d",
+  "participantId": "dot",
+  "topicId": "coordination-advisory",
+  "body": "{\"protocol\":\"omi-advisory/1\",\"id\":\"dot-assign-arch-muse-001-v1\",\"kind\":\"assignment\",\"from\":\"dot\",\"to\":[\"muse\"],\"taskId\":\"ARCH-MUSE-001\",\"summary\":\"Maintain the architecture/evidence gap register and synthesize QA findings. Keep implemented behavior, numerical evidence, provisional claims, external blockers, and live-connection status distinct. Avoid redesigning core terminology.\",\"details\":{\"deliverables\":[\"ACK\",\"evidence-linked gap register\",\"prioritized QA findings with owner/dependency\",\"plain-English owner summary\"],\"goal\":\"Maintain the architecture/evidence gap register and synthesize QA findings. Keep implemented behavior, numerical evidence, provisional claims, external blockers, and live-connection status distinct. Avoid redesigning core terminology.\",\"owner\":\"muse\",\"replyTopic\":\"coordination-advisory\",\"reportedHost\":\"Muse VM / Lantern seat\",\"scope\":[\"docs/architecture.md\",\"docs/accessibility.md\",\"docs/qa-findings.md\"],\"source\":{\"baselineCommit\":\"59f709dcdf92b45273483582e78f2806c3bbef5b\",\"branch\":\"omi/client-and-relay\",\"repository\":\"https://github.com/nighteyes-neversleep/kaos_labs.git\"},\"status\":\"acknowledged-via-owner; direct write blocked\",\"taskId\":\"ARCH-MUSE-001\"},\"createdAt\":\"2026-11-02T21:31:29.048Z\",\"requiresAck\":false}",
+  "clientMessageId": "dot-assign-arch-muse-001-v1",
+  "createdAt": "2026-11-02T21:36:52.343Z"
+}
