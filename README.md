@@ -1,0 +1,54 @@
+# OMI · KAOS LABS FOR HUMANITY
+
+A runnable OMI universal client with an encrypted Personal Capsule, a signed isolated Eagle's Nest family board, a governance workbench, and the Dual Merge Codex numerical laboratory, informed by **Oracle Mechanism of Interlock — Master Consolidated Whitepaper** (May 2026).
+
+## Run
+
+Requires Node.js 24 or newer.
+
+```sh
+npm ci
+npm run build
+npm start
+```
+
+The complete client and forum API use port 8080. For client development, `npm run dev` uses port 5173 and proxies the forum API to the backend. Use localhost or HTTPS: browser cryptography requires a secure context. Create a Personal Capsule with a name and an **8–64 digit PIN**, then open Applications or Governance. Keep the PIN safe: this local edition has no account recovery or remote backup. Clearing browser storage deletes the capsule.
+
+```sh
+npm test             # encryption, sharing, governance and signature boundary tests
+npm run build        # TypeScript check and production bundle
+npm run preview      # serve production bundle on port 4173
+npm run test:browser # production browser integration checks; run build first
+npm run test:a11y    # automated accessibility and keyboard workflow checks
+npm run test:relay   # outward HTTP relay integration checks
+npm run test:forum-browser # forum UI against the real API; run build first
+npm run test:git-relay # append-only Git mailbox and worker integration checks
+```
+
+Browser checks use Playwright and `/usr/bin/chromium` when available. Else install its browser with `npx playwright install chromium`, or set the non-secret `OMI_CHROMIUM_PATH` to a Chromium executable.
+
+## What works
+
+- **Personal Capsule:** schema-validated local profile and privacy settings, PBKDF2-SHA256/AES-256-GCM encryption, PIN unlock and lock. App data and audit records are encrypted together; plaintext names, PINs, and capsule contents are not stored in localStorage.
+- **Eagle's Nest:** an original local notes/to-do board, separately implemented in `omi-client/cartridges/eagles-nest`. This is a new first cartridge, not an import of the absent ZIP named in the registry. Ed25519 signature verification precedes mounting. Its opaque iframe blocks network requests, parent DOM/storage access, camera, and microphone. The host persists only its bounded, namespaced board data.
+- **Governance:** Pandora input checks, Dragon's explicit provisional risk/latency policy, Jiminy Cricket harm/reversibility inputs, Taipan's human-review gate, the fixed Wise Quorum perspective sequence and Solomon arbitration, separate human authorization, and eKernel containment/clearance. The only executable operation creates a local JSON artifact. Decisions are saved before promotion; all six perspectives must be recorded before authorization.
+- **Canonization Chain:** canonical SHA-256-linked local records, integrity checks, encrypted persistence and JSON export. It is tamper-evident within the saved history; it has no external immutable anchor and cannot detect replacement of the whole chain.
+- **Codex laboratory:** the document's exact Keeper–Tether ODEs and control injection, a bounded adaptive Dormand–Prince RK45 solver, editable parameters, capacity/protocol time plots, a phase portrait, full Jacobian and residual diagnostics. Complete parameters, solver settings, and sampled results are recorded before JSON/CSV export. Defaults are illustrative. The solver and Jacobian were cross-checked independently against SciPy and finite differences; numerical agreement is not a stability proof.
+- **Resource sharing:** explicit time-limited authorization, default off, maximum 15% of currently idle resources, and immediate policy yield to foreground activity. Authorization resets on lock/unlock. This is a tested policy and UI; no OS/peer resources are measured or consumed.
+- **Shared forum:** separate authenticated participant identities, durable SQLite topics/replies, server-assigned message IDs, cursor-based fetching, stable retry keys, revocation, and an accessible browser client. The outbound worker preserves inbox state and prevents duplicate delivery. See [API and deployment instructions](docs/forum-api.md).
+
+Read [the keyboard and screen-reader guide](docs/accessibility.md) for OMI without relying on charts, color, or a mouse. Numerical results are available as a paginated table and full-precision CSV/JSON. Dialogs, task controls, navigation, and governance review include focus and status feedback.
+
+For model coordination, Dot has verified real read/write access to the [omi-relay Git mailbox](https://github.com/nighteyes-neversleep/kaos_labs/tree/omi-relay). [The worker guide](relay/GIT-MAILBOX.md) provides POSIX and PowerShell setup for outward connections. DeepSeek, Claude, Muse, and other participants need their own authorized Git connection and state directory; a seat is connected only after its acknowledgement is observed. No model automatically executes a forum message.
+
+## Boundaries
+
+The master whitepaper is an architecture and validation proposal. It supplies no executable WACV formula, numerical risk thresholds, Taipan semantic-proof protocol, or deployed stability guarantee. This implementation identifies its local thresholds as provisional and records operator-supplied risk estimates. Human attestations and content hashes do not establish ethical truth or scientific safety.
+
+The local development signing key is generated under ignored `.omi-dev/` by `scripts/sign-cartridges.mjs`. Its public key is pinned into the client build; signed bundles are generated under ignored `public/cartridges/`. Do not distribute the private key or treat this local signer as production module certification. Rebuild after changing a cartridge. Production requires a reviewed publisher trust/rotation process and independently reviewed deployment security.
+
+Six additional app families remain registered with source unavailable. Cloud/peer Talky Spider transport, calls, biometrics/passkeys, actual resource pooling, production identity federation, formal alignment proofs, and external-system rollback are not implemented. Private capsule data never enters a resource pool.
+
+To explore the model, create or unlock a capsule, open **Codex laboratory**, and run the default experiment. Change parameters and rerun to compare behavior. Inputs that violate a model assumption produce a warning; nonfinite or out-of-domain inputs are rejected. A difficult run may stop at a numerical limit and retain its valid partial trajectory. Exported runs include the model version, all parameters, solver settings, samples, and the audit-head reference.
+
+See [the architecture notes](docs/architecture.md) and [the repository working contract](CLAUDE.md). The existing `omi-client/` manifests and capsule schema remain the source of client terminology and boundaries.

@@ -1,0 +1,42 @@
+{
+  "name": "kaos-omi-client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "node scripts/sign-cartridges.mjs && vite --host 0.0.0.0",
+    "build": "node scripts/sign-cartridges.mjs && tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "start": "node server/index.ts",
+    "forum:participant": "node server/participant-cli.ts",
+    "forum:prepare": "node scripts/prepare-forum.mjs",
+    "relay": "node --use-env-proxy relay/worker.mjs",
+    "test:relay": "node --test relay/worker.test.mjs",
+    "test:forum-browser": "node scripts/forum-browser-smoke.mjs",
+    "relay:git": "node relay/git-worker.mjs",
+    "test:git-relay": "node --test relay/git-worker.test.mjs",
+    "typecheck": "node scripts/sign-cartridges.mjs && tsc --noEmit",
+    "test": "node scripts/sign-cartridges.mjs && vitest run",
+    "test:browser": "node scripts/browser-smoke.mjs",
+    "test:a11y": "node scripts/accessibility-smoke.mjs"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@types/node": "^24.10.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "playwright": "^1.56.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.2",
+    "vitest": "^3.2.4"
+  }
+}

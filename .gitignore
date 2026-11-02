@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.omi-dev/
+src/generated/
+public/cartridges/
+test-results/
+*.log

@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title>Eagle’s Nest · Family board</title>
+  <style>
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#f5edf7;background:#15101d;font-synthesis:none;--muted:#b6a8c1;--line:#3b2e46;--purple:#d2b0ff;--soft:#21182b}
+    *{box-sizing:border-box}body{margin:0;min-height:550px}button,input,textarea{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.45}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #debfff;outline-offset:4px}button,input,textarea{border-radius:10px}button{color:inherit}svg{flex-shrink:0}main{max-width:1120px;margin:auto;padding:30px}header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-bottom:26px;border-bottom:1px solid var(--line)}.brand{display:flex;gap:14px;align-items:center}.brand-mark{display:grid;place-items:center;width:48px;height:48px;border:1px solid #79549b;background:#30203f;border-radius:15px;color:#dab6ff}.eyebrow{color:var(--purple);font-size:10px;font-weight:750;letter-spacing:.19em;text-transform:uppercase;margin:0 0 5px}h1{font-size:23px;letter-spacing:-.04em;margin:0;font-weight:650}.private{display:flex;gap:7px;align-items:center;color:#cbb9d7;font-size:11px;border:1px solid var(--line);border-radius:30px;padding:8px 11px;white-space:nowrap}.intro{display:flex;justify-content:space-between;gap:15px;align-items:center;margin:27px 0 22px}h2{font-size:20px;letter-spacing:-.035em;margin:0 0 7px}.intro p,.composer p{font-size:12px;line-height:1.65;color:var(--muted);margin:0}.count{color:#9e8daa;font-size:11px;white-space:nowrap}.layout{display:grid;grid-template-columns:minmax(0,1fr) 285px;gap:24px;align-items:start}.tabs{display:flex;gap:4px;margin-bottom:17px;padding:4px;border:1px solid var(--line);border-radius:12px;background:#1c1525;width:fit-content}.tab{border:0;background:transparent;font-size:11px;padding:8px 14px;color:var(--muted)}.tab[aria-pressed=true]{background:#3d2a50;color:#eedbff;box-shadow:0 2px 5px #0002}.entries{display:grid;gap:12px}.entry{border:1px solid var(--line);background:linear-gradient(130deg,#251c2e,#1c1625);border-radius:14px;padding:17px 18px;overflow-wrap:anywhere}.entry-top{display:flex;justify-content:space-between;gap:10px;align-items:center}.kind-label{font-size:9px;color:#cba8e9;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:6px}.entry time{font-size:9px;color:#a694b2}.entry h3{font-size:14px;line-height:1.5;letter-spacing:-.015em;margin:12px 0 6px}.entry p{margin:0;font-size:12px;line-height:1.7;color:#c9bcd3;white-space:pre-wrap}.entry.done h3{text-decoration:line-through;color:#a28eaf}.entry.done{background:#1d1723}.entry-actions{display:flex;gap:6px;align-items:center;margin-top:15px;padding-top:11px;border-top:1px solid #ffffff0c}.entry-actions button{background:none;border:0;font-size:10px;color:#baa9c7;padding:5px 7px}.entry-actions button:hover{background:#ffffff09;color:#f2dbff}.entry-actions button:last-child{margin-left:auto}.entry-actions .complete{color:#d2b0ff}.empty{min-height:264px;border:1px dashed #513e60;border-radius:16px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:30px;background:radial-gradient(ellipse at center,#36214160,transparent 70%)}.empty svg{color:#bf96e2;margin-bottom:15px}.empty h3{font-size:16px;font-weight:550;margin:0 0 9px;letter-spacing:-.025em}.empty p{font-size:12px;line-height:1.8;color:var(--muted);max-width:270px;margin:0}.composer{border:1px solid #4a355c;border-radius:15px;background:#24192f;padding:20px;position:sticky;top:20px}.composer h2{font-size:16px;margin-bottom:5px}.composer fieldset{border:0;padding:0;margin:18px 0}.composer legend,.field-label{display:block;font-size:10px;font-weight:650;margin-bottom:8px;color:#cfbddc;letter-spacing:.025em}.types{display:flex;gap:14px}.types label{font-size:11px;display:flex;align-items:center;gap:6px;color:#d9cbe2}.types input{accent-color:#caa0ef;margin:0}input[type=text],textarea{display:block;background:#191120;border:1px solid #4d385e;color:#f0e4f6;padding:10px 11px;width:100%;font-size:12px;line-height:1.6}input::placeholder,textarea::placeholder{color:#92819e}textarea{resize:vertical;min-height:96px;max-height:250px}.field{margin-bottom:14px}.optional{font-weight:400;color:#a18cac}.submit{border:1px solid #dab7ff;background:#ccabed;color:#251333;width:100%;padding:11px;font-size:11px;font-weight:750;margin-top:2px}.submit:hover{background:#ddc2f7}.cancel{display:none;border:1px solid #684c7d;background:none;width:100%;padding:9px;font-size:11px;color:#dbbfef;margin-top:8px}.status{min-height:19px;font-size:10px;line-height:1.6;margin:12px 0 0!important;color:#b9a4c7!important}.footnote{color:#9683a3;font-size:10px;line-height:1.8;margin:18px 0 0;padding:0 3px}.notice{display:none;gap:12px;align-items:center;padding:10px 13px;background:#33213f;border:1px solid #674680;border-radius:10px;font-size:11px;margin-bottom:14px;color:#dbc6e9}.notice button{background:none;border:0;color:#e2c0ff;text-decoration:underline;font-size:11px}.notice button:last-child{margin-left:auto;text-decoration:none}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .field-help{font-size:10px!important;line-height:1.6!important;color:#b8a4c7!important;margin-top:6px!important}.validation{min-height:19px;font-size:11px!important;line-height:1.6!important;color:#ffb9cc!important;margin-top:10px!important}[aria-invalid=true]{border-color:#ffb9cc!important}.entry-actions button,.notice button{min-height:30px}.types label{min-height:30px}.private{font-size:12px}.kind-label,.entry time{font-size:11px}
+    @media(max-width:720px){main{padding:22px 18px}.layout{grid-template-columns:1fr}.composer{position:static}.composer h2{font-size:17px}.intro{align-items:start}.private{font-size:11px;padding:7px 9px}.brand-mark{width:40px;height:40px;border-radius:12px}h1{font-size:20px}.eyebrow{font-size:8px}.count{margin-top:5px}header{gap:10px}.entry{padding:16px}.empty{min-height:220px}}
+    @media(max-width:440px){header{flex-wrap:wrap}}
+    @media(prefers-reduced-motion:no-preference){button{transition:background .15s,color .15s}.entry{animation:arrive .2s ease-out}@keyframes arrive{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}}
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7M5.5 9v10h13V9M9.5 19v-6h5v6"/><path d="M8 7.5 12 10l4-2.5"/></svg></div>
+        <div><p class="eyebrow">A little closer, every day</p><h1>Eagle’s Nest</h1></div>
+      </div>
+      <span class="private"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Private capsule</span>
+    </header>
+    <div class="intro"><div><h2 id="board-heading">Your family board</h2><p>A place for the little things worth remembering.</p></div><span class="count" id="count">0 items</span></div>
+    <div class="layout">
+      <section aria-labelledby="board-heading">
+        <div class="tabs" role="group" aria-label="Filter board" aria-describedby="filter-help">
+          <button class="tab" type="button" data-filter="all" aria-pressed="true" aria-controls="entries">Everything</button>
+          <button class="tab" type="button" data-filter="note" aria-pressed="false" aria-controls="entries">Notes</button>
+          <button class="tab" type="button" data-filter="task" aria-pressed="false" aria-controls="entries">To-dos</button>
+        </div>
+        <p id="filter-help" class="sr-only">Choose which items appear on the board. The selected filter stays pressed.</p>
+        <div class="notice" id="undo-notice"><span>Item removed.</span><button type="button" id="undo">Undo</button><button type="button" id="dismiss-undo" aria-label="Dismiss undo">×</button></div>
+        <p id="board-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+        <div class="entries" id="entries"></div>
+        <p class="footnote">This board lives in your local Personal Capsule. Family sync will need a connected, authenticated Talky Spider service.</p>
+      </section>
+      <aside class="composer" aria-labelledby="composer-title">
+        <h2 id="composer-title">Leave a little something</h2>
+        <p>A reminder, a plan, or a thought for later.</p>
+        <div id="compose" role="form" aria-label="Add a board item">
+          <fieldset><legend>Make it a</legend><div class="types"><label><input type="radio" name="kind" value="note" checked> Note</label><label><input type="radio" name="kind" value="task"> To-do</label></div></fieldset>
+          <div class="field"><label class="field-label" for="title">Title</label><input id="title" type="text" maxlength="80" placeholder="What’s on your mind?" required autocomplete="off" aria-describedby="title-help validation-status" aria-invalid="false" disabled><p class="field-help" id="title-help">Required. Up to 80 characters. Press Enter to add or save the item.</p></div>
+          <div class="field"><label class="field-label" for="body">Details <span class="optional">· optional</span></label><textarea id="body" maxlength="800" placeholder="A little more, if you like…" aria-describedby="body-help" disabled></textarea><p class="field-help" id="body-help">Up to 800 characters. Enter starts a new line. Control or Command + Enter saves.</p></div>
+          <button class="submit" type="button" id="submit" disabled>Add to the board</button>
+          <button class="cancel" type="button" id="cancel">Cancel editing</button>
+          <p class="validation" id="validation-status" role="alert" aria-live="assertive" aria-atomic="true"></p>
+          <p class="status" id="status" role="status" aria-live="polite" aria-atomic="true">Waiting for your Personal Capsule…</p>
+          <button class="cancel" type="button" id="retry">Try saving again</button>
+        </div>
+      </aside>
+    </div>
+  </main>
+  <script>
+    (() => {
+      'use strict';
+      const APP_ID = 'eagles-nest';
+      const MAX_ENTRIES = 50;
+      const byId = id => document.getElementById(id);
+      let entries = [];
+      let filter = 'all';
+      let editing = null;
+      let removed = null;
+      let initialized = false;
+      let parentOrigin = '*';
+      let saveSequence = 0;
+      let latestRequest = 0;
+      const status = message => { byId('status').textContent = message; };
+      const announce = message => { byId('board-status').textContent = message; };
+      const validation = (message, invalidTitle = false) => {
+        byId('validation-status').textContent = message;
+        byId('title').setAttribute('aria-invalid', String(invalidTitle));
+      };
+      function focusEntry(entryId, action = 'edit') {
+        const card = [...document.querySelectorAll('.entry')].find(item => item.dataset.entryId === entryId);
+        const target = card && card.querySelector(`.${action}`);
+        (target || document.querySelector('.tab[aria-pressed="true"]')).focus();
+      }
+      const id = () => typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      const send = () => {
+        if (!initialized || parent === window) return;
+        latestRequest = ++saveSequence;
+        if (document.activeElement === byId('retry')) byId('title').focus();
+        byId('retry').style.display = 'none';
+        status('Saving to your capsule…');
+        parent.postMessage({ type: 'omi:save', appId: APP_ID, requestId: latestRequest, data: { version: 1, entries } }, parentOrigin);
+      };
+      function normalize(data) {
+        if (!data || typeof data !== 'object' || data.version !== 1 || !Array.isArray(data.entries)) return [];
+        const seen = new Set();
+        return data.entries.slice(0, MAX_ENTRIES).filter(item => {
+          if (!item || typeof item !== 'object' || typeof item.id !== 'string' || !item.id || item.id.length > 100 || seen.has(item.id)) return false;
+          if (typeof item.title !== 'string' || !item.title.trim() || item.title.length > 80 || typeof item.body !== 'string' || item.body.length > 800) return false;
+          if (!['note', 'task'].includes(item.kind) || typeof item.done !== 'boolean' || typeof item.createdAt !== 'string' || !Number.isFinite(Date.parse(item.createdAt))) return false;
+          seen.add(item.id);
+          return true;
+        }).map(item => ({ id: item.id, title: item.title, body: item.body, kind: item.kind, done: item.done, createdAt: item.createdAt }));
+      }
+      function button(label, onClick, className, accessibleLabel) {
+        const element = document.createElement('button');
+        element.type = 'button';
+        element.textContent = label;
+        if (className) element.className = className;
+        if (accessibleLabel) element.setAttribute('aria-label', accessibleLabel);
+        element.addEventListener('click', onClick);
+        return element;
+      }
+      function clearComposer() {
+        editing = null;
+        byId('title').value = '';
+        byId('body').value = '';
+        document.querySelector('input[name="kind"][value="note"]').checked = true;
+        byId('composer-title').textContent = 'Leave a little something';
+        byId('submit').textContent = 'Add to the board';
+        byId('cancel').style.display = 'none';
+        validation('');
+      }
+      function render() {
+        const list = byId('entries');
+        list.replaceChildren();
+        byId('count').textContent = `${entries.length} ${entries.length === 1 ? 'item' : 'items'}`;
+        const visible = entries.filter(entry => filter === 'all' || entry.kind === filter);
+        if (!visible.length) {
+          const empty = document.createElement('div');
+          empty.className = 'empty';
+          // All markup here is static. User content is rendered with textContent below.
+          empty.innerHTML = '<svg width="37" height="37" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><rect x="6" y="4" width="20" height="25" rx="4"/><path d="M12 4V2m8 2V2M11 12h10m-10 5h10m-10 5h6"/></svg>';
+          const title = document.createElement('h3');
+          title.textContent = filter === 'task' ? 'A little room to make plans' : filter === 'note' ? 'Your thoughts belong here' : 'Make this space your own';
+          const detail = document.createElement('p');
+          detail.textContent = filter === 'task' ? 'Add a to-do and check it off when it’s done.' : 'Start with a note or a to-do. The board grows with the things you add.';
+          empty.append(title, detail);
+          list.append(empty);
+        }
+        visible.forEach((entry, index) => {
+          const card = document.createElement('article');
+          card.className = `entry${entry.kind === 'task' && entry.done ? ' done' : ''}`;
+          card.dataset.entryId = entry.id;
+          card.setAttribute('aria-labelledby', `entry-heading-${index}`);
+          const top = document.createElement('div');
+          top.className = 'entry-top';
+          const kind = document.createElement('span');
+          kind.className = 'kind-label';
+          kind.textContent = entry.kind === 'note' ? 'A little note' : entry.done ? 'To-do · complete' : 'To-do · open';
+          const date = document.createElement('time');
+          date.dateTime = entry.createdAt;
+          date.textContent = new Date(entry.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+          top.append(kind, date);
+          const title = document.createElement('h3');
+          title.id = `entry-heading-${index}`;
+          title.textContent = entry.title;
+          const body = document.createElement('p');
+          body.textContent = entry.body;
+          const actions = document.createElement('div');
+          actions.className = 'entry-actions';
+          if (entry.kind === 'task') {
+            const complete = button(entry.done ? 'Reopen' : 'Complete', () => {
+              entry.done = !entry.done;
+              send(); render();
+              focusEntry(entry.id, 'complete');
+              announce(`${entry.title} ${entry.done ? 'completed' : 'reopened'}.`);
+            }, 'complete', `${entry.done ? 'Reopen' : 'Complete'} ${entry.title}`);
+            complete.setAttribute('aria-pressed', String(entry.done));
+            actions.append(complete);
+          }
+          actions.append(button('Edit', () => {
+            editing = entry.id;
+            byId('title').value = entry.title;
+            byId('body').value = entry.body;
+            document.querySelector(`input[name="kind"][value="${entry.kind}"]`).checked = true;
+            byId('composer-title').textContent = 'A little change';
+            byId('submit').textContent = 'Save changes';
+            byId('cancel').style.display = 'block';
+            validation('');
+            byId('title').focus();
+            announce(`Editing ${entry.title}.`);
+          }, 'edit', `Edit ${entry.title}`));
+          actions.append(button('Remove', () => {
+            removed = { entry: { ...entry }, index: entries.findIndex(item => item.id === entry.id) };
+            entries = entries.filter(item => item.id !== entry.id);
+            if (editing === entry.id) clearComposer();
+            byId('undo-notice').style.display = 'flex';
+            send(); render();
+            byId('undo').focus();
+            announce(`Removed ${entry.title}. Undo is available.`);
+          }, 'remove', `Remove ${entry.title}`));
+          card.append(top, title);
+          if (entry.body) card.append(body);
+          card.append(actions);
+          list.append(card);
+        });
+      }
+      window.addEventListener('message', event => {
+        if (event.source !== parent || parent === window || !event.data || event.data.appId !== APP_ID) return;
+        if (initialized && event.data.requestId === latestRequest && latestRequest > 0) {
+          if (event.data.type === 'omi:saved') {
+            status('Saved in your Personal Capsule.');
+            byId('retry').style.display = 'none';
+          } else if (event.data.type === 'omi:save-error') {
+            status('Your latest changes aren’t saved. Try saving again before you leave.');
+            byId('retry').style.display = 'block';
+          }
+        }
+        if (event.data.type !== 'omi:init') return;
+        // Readiness can be acknowledged repeatedly without overwriting unsaved local edits.
+        if (initialized) return;
+        parentOrigin = event.origin && event.origin !== 'null' ? event.origin : '*';
+        entries = normalize(event.data.data);
+        initialized = true;
+        for (const name of ['title', 'body', 'submit']) byId(name).disabled = false;
+        status('Your board is ready.');
+        render();
+      });
+      byId('submit').addEventListener('click', () => {
+        if (!initialized) return;
+        const title = byId('title').value.trim();
+        const body = byId('body').value.trim();
+        if (!title) { validation('Give your note or to-do a title.', true); byId('title').focus(); return; }
+        if (!editing && entries.length >= MAX_ENTRIES) { validation('Your board holds 50 items. Remove an older item to make room.'); return; }
+        const kind = document.querySelector('input[name="kind"]:checked').value;
+        const wasEditing = Boolean(editing);
+        if (editing) {
+          const entry = entries.find(item => item.id === editing);
+          if (!entry) { clearComposer(); validation('That item is no longer on the board.'); byId('title').focus(); return; }
+          Object.assign(entry, { title, body, kind, done: kind === 'task' && entry.done });
+        } else entries.unshift({ id: id(), title, body, kind, done: false, createdAt: new Date().toISOString() });
+        clearComposer(); send(); render(); byId('title').focus();
+        announce(`${wasEditing ? 'Updated' : 'Added'} ${title}.`);
+      });
+      byId('title').addEventListener('keydown', event => {
+        if (event.key === 'Enter' && !event.isComposing) { event.preventDefault(); byId('submit').click(); }
+      });
+      byId('body').addEventListener('keydown', event => {
+        if (event.key === 'Enter' && (event.ctrlKey || event.metaKey) && !event.isComposing) { event.preventDefault(); byId('submit').click(); }
+      });
+      byId('title').addEventListener('input', () => { if (byId('title').value.trim()) validation(''); });
+      byId('cancel').addEventListener('click', () => {
+        const entryId = editing;
+        clearComposer();
+        focusEntry(entryId);
+        announce('Editing canceled.');
+      });
+      byId('retry').addEventListener('click', send);
+      document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => {
+        filter = tab.dataset.filter;
+        document.querySelectorAll('.tab').forEach(item => item.setAttribute('aria-pressed', String(item === tab)));
+        render();
+        const visibleCount = entries.filter(entry => filter === 'all' || entry.kind === filter).length;
+        announce(`${tab.textContent} selected. ${visibleCount} ${visibleCount === 1 ? 'item' : 'items'} shown.`);
+      }));
+      byId('undo').addEventListener('click', () => {
+        if (!removed) return;
+        if (entries.length >= MAX_ENTRIES) { validation('Remove an item before restoring this one.'); return; }
+        const restored = removed.entry;
+        entries.splice(removed.index, 0, removed.entry);
+        removed = null;
+        byId('undo-notice').style.display = 'none';
+        send(); render();
+        focusEntry(restored.id);
+        announce(`Restored ${restored.title}.`);
+      });
+      byId('dismiss-undo').addEventListener('click', () => {
+        removed = null;
+        byId('undo-notice').style.display = 'none';
+        document.querySelector('.tab[aria-pressed="true"]').focus();
+        announce('Undo dismissed.');
+      });
+      window.addEventListener('keydown', event => {
+        if (event.key !== 'Escape' || event.defaultPrevented || event.isComposing || event.repeat || !initialized || parent === window) return;
+        event.preventDefault();
+        parent.postMessage({ type: 'omi:close', appId: APP_ID }, parentOrigin);
+      });
+      render();
+      if (parent !== window) parent.postMessage({ type: 'omi:ready', appId: APP_ID }, '*');
+      else status('Open Eagle’s Nest through OMI to use your Personal Capsule.');
+    })();
+  </script>
+</body>
+</html>
